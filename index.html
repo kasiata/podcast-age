@@ -143,6 +143,15 @@
 // [age, name, gender (w/m), discipline (music/words/art/stage), sentence that follows "At {age}, "]
 const G = [
  // ---------- music
+ [52,"Cher","w","music","Cher went to number one in America with Believe, the oldest woman ever to do it at the time."],
+ [55,"Kylie Minogue","w","music","Kylie Minogue had a global hit with Padam Padam, and won her first Grammy in twenty years."],
+ [59,"Cyndi Lauper","w","music","Cyndi Lauper became the first woman to win the Tony for Best Score on her own, for Kinky Boots."],
+ [63,"Kate Bush","w","music","Kate Bush went to number one in Britain with Running Up That Hill, 37 years after she released it."],
+ [71,"Mavis Staples","w","music","Mavis Staples won her first Grammy, sixty years into her career."],
+ [73,"Bonnie Raitt","w","music","Bonnie Raitt beat Taylor Swift, Beyoncé and Adele to the Grammy for Song of the Year."],
+ [76,"Gloria Gaynor","w","music","Gloria Gaynor won a Grammy, forty years after I Will Survive."],
+ [77,"Dolly Parton","w","music","Dolly Parton released her first rock album. It became the highest-charting album of her career."],
+ [78,"Brenda Lee","w","music","Brenda Lee went to number one in America with Rockin’ Around the Christmas Tree, 65 years after she recorded it."],
  [55,"Sixto Rodriguez","m","music","Sixto Rodriguez found out he had been a star in South Africa for 25 years, and flew there to play sold-out concerts."],
  [45,"Tina Turner","w","music","Tina Turner swept the Grammys with her comeback album, Private Dancer."],
  [46,"Sharon Jones","w","music","Sharon Jones released her first album, after years as a prison guard and wedding singer."],
@@ -293,10 +302,10 @@ const THEMES = [
   {id:"ink", bg:"#121214", ink:"#f5f1ea", a:["#ff4f79","#ffd23f","#7cf2d0"]},
   {id:"mist", bg:"#e3e2df", ink:"#2f363c", a:["#c46b80","#43323a","#b9c4cb"]}
 ];
-const DECORS = [["number","Big number"],["shapes","Shapes"],["glow","Glow"],["confetti","Confetti"],["candles","Candles"]];
+const DECORS = [["party","Party!"],["balloons","Balloons"],["ribbons","Ribbons"],["bunting","Bunting"],["confetti","Confetti"],["number","Big number"],["shapes","Shapes"],["glow","Glow"],["candles","Candles"]];
 const FONTS = [["grotesk","Grotesk"],["serif","Serif"],["mix","Mix"]];
 
-const S = {age:60, gender:"any", disc:"any", excuse:"none", name:"", theme:"tomato", decor:"number", font:"mix", pick:0, seed:7};
+const S = {age:60, gender:"any", disc:"any", excuse:"none", name:"", theme:"tomato", decor:"party", font:"mix", pick:0, seed:7};
 const $ = id => document.getElementById(id);
 const ord = n => { const s=["th","st","nd","rd"], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
 
@@ -415,6 +424,73 @@ function gCandles(t){
   ctx.restore();
 }
 
+
+function gBalloons(t, r, small){
+  const spots = small ? [[880,250],[985,330]] : [[850,220],[975,310],[790,105],[1005,130]];
+  spots.forEach(([bx,by], i) => {
+    const x = bx + (r()-.5)*40, y = by + (r()-.5)*40, rx = small ? 62 : 72, ry = small ? 78 : 90;
+    ctx.save();
+    ctx.strokeStyle = t.ink; ctx.globalAlpha = .35; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(x, y+ry+8); ctx.bezierCurveTo(x-20, y+ry+60, x+20, y+ry+100, x-6, y+ry+150); ctx.stroke();
+    ctx.globalAlpha = 1;
+    const c = t.a[i % 3];
+    const g = ctx.createRadialGradient(x-rx*.35, y-ry*.4, 4, x, y, ry*1.1);
+    g.addColorStop(0, '#ffffff'); g.addColorStop(.18, c); g.addColorStop(1, c);
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = c; ctx.beginPath(); ctx.moveTo(x-10, y+ry+10); ctx.lineTo(x+10, y+ry+10); ctx.lineTo(x, y+ry-4); ctx.closePath(); ctx.fill();
+    ctx.restore();
+  });
+}
+function ribbon(t, r, x0, y0, len, color, dir){
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 14; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x0, y0);
+  let x = x0, y = y0;
+  for (let i=0;i<len;i++){
+    const dx = (40 + r()*30) * dir, dy = 25 + r()*30;
+    ctx.bezierCurveTo(x + dx*.2, y - 50, x + dx*.9, y + dy + 40, x + dx, y + dy);
+    x += dx; y += dy;
+  }
+  ctx.stroke(); ctx.restore();
+}
+function gRibbons(t, r){
+  ribbon(t, r, 640, -20, 6, t.a[0], 1);
+  ribbon(t, r, 820, -30, 5, t.a[1], 1);
+  ribbon(t, r, 980, 10, 4, t.a[2], -1);
+  ribbon(t, r, 60, H-260, 4, t.a[1], 1);
+  ribbon(t, r, -20, H-180, 5, t.a[0], 1);
+}
+function gBunting(t){
+  const y0 = 40, sag = 70;
+  ctx.save(); ctx.strokeStyle = t.ink; ctx.globalAlpha = .5; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(-10, y0); ctx.quadraticCurveTo(W/2, y0 + sag*2, W+10, y0); ctx.stroke(); ctx.globalAlpha = 1;
+  const n = 12;
+  for (let i=0;i<n;i++){
+    const u = (i+.5)/n, x = -10 + u*(W+20);
+    const y = (1-u)*(1-u)*y0 + 2*(1-u)*u*(y0+sag*2) + u*u*y0;
+    ctx.fillStyle = t.a[i % 3];
+    ctx.beginPath(); ctx.moveTo(x-36, y); ctx.lineTo(x+36, y); ctx.lineTo(x, y+80); ctx.closePath(); ctx.fill();
+  }
+  ctx.restore();
+}
+function gPartyConfetti(t, r, n){
+  ctx.save();
+  const zones = [[520, 30, W-40, 260],[W-170, 260, W-30, H-60],[420, H-210, W-170, H-40]];
+  for (let i=0;i<n;i++){
+    const z = zones[Math.floor(r()*zones.length)];
+    const x = z[0] + r()*(z[2]-z[0]), y = z[1] + r()*(z[3]-z[1]);
+    ctx.fillStyle = ctx.strokeStyle = t.a[Math.floor(r()*3)];
+    ctx.save(); ctx.translate(x,y); ctx.rotate(r()*Math.PI*2);
+    const k = r();
+    if (k < .35){ ctx.beginPath(); ctx.arc(0,0,6+r()*6,0,Math.PI*2); ctx.fill(); }
+    else if (k < .65){ ctx.fillRect(-14,-4,28,8); }
+    else if (k < .85){ ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-16,0); ctx.quadraticCurveTo(-8,-12,0,0); ctx.quadraticCurveTo(8,12,16,0); ctx.stroke(); }
+    else { ctx.beginPath(); for (let p=0;p<5;p++){ const a = p*Math.PI*2/5 - Math.PI/2; ctx.lineTo(Math.cos(a)*12, Math.sin(a)*12); const b = a + Math.PI/5; ctx.lineTo(Math.cos(b)*5, Math.sin(b)*5); } ctx.closePath(); ctx.fill(); }
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
 function fontSet(){
   if (S.font === "serif") return {head:(s)=>`400 ${s}px 'Instrument Serif', Georgia, serif`, body:(s)=>`400 ${s}px 'Instrument Serif', Georgia, serif`, sign:(s)=>`italic 400 ${s}px 'Instrument Serif', Georgia, serif`, hs:130, bs:50, ss:46};
   if (S.font === "grotesk") return {head:(s)=>`800 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, body:(s)=>`400 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, sign:(s)=>`600 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, hs:104, bs:40, ss:36};
@@ -445,16 +521,22 @@ function draw(){
   if (d==="glow") gGlow(t, r);
   if (d==="confetti") gConfetti(t, r);
   if (d==="candles") gCandles(t);
+  if (d==="bunting"){ gBunting(t); gPartyConfetti(t, r, 30); }
+  if (d==="ribbons") gRibbons(t, r);
+  if (d==="balloons") gBalloons(t, r, false);
+  if (d==="party"){ gRibbons(t, r); gPartyConfetti(t, r, 80); gBalloons(t, r, true); }
 
   // top label
+  const ly = d==="bunting" ? H - 140 : 120;
   ctx.fillStyle = t.ink; ctx.font = "600 22px Inter, system-ui, sans-serif";
-  ctx.fillText("Late Breakthrough", P, 120);
-  ctx.globalAlpha = .55; ctx.fillText("Birthday Card", P, 150); ctx.globalAlpha = 1;
+  ctx.fillText("Late Breakthrough", P, ly);
+  ctx.globalAlpha = .55; ctx.fillText("Birthday Card", P, ly + 30); ctx.globalAlpha = 1;
 
   const f = fontSet();
-  const maxW = (d==="candles") ? W - 2*P - 40 : W - 2*P;
-  const top = (d==="shapes") ? 360 : 300;
-  const bottom = (d==="candles") ? H - 380 : (d==="number" ? H - 420 : H - 200);
+  const narrow = ["candles","balloons","party"].includes(d);
+  const maxW = (d==="balloons" || d==="party") ? W - 2*P - 290 : (narrow ? W - 2*P - 170 : W - 2*P);
+  const top = (d==="shapes") ? 360 : (["bunting","ribbons","party"].includes(d) ? 330 : 300);
+  const bottom = (d==="candles") ? H - 380 : (d==="number" ? H - 420 : (["ribbons","party"].includes(d) ? H - 280 : H - 200));
   const hello = $('t-hello').value, body = $('t-body').value, sign = $('t-sign').value;
 
   let hs = f.hs, bs = f.bs, ss = f.ss, hl, bl, sl, total;
@@ -475,14 +557,27 @@ function draw(){
   ctx.font = f.sign(ss); sl.forEach(l => { ctx.fillText(l, P, y); y += ss*1.25; });
 
   // footer
-  if (d !== "shapes"){
+  if (["number","glow","confetti","candles"].includes(d)){
     ctx.font = "600 22px Inter, system-ui, sans-serif"; ctx.fillStyle = t.ink; ctx.textAlign = "right";
     ctx.fillText("Nobody’s Business", W - P, 120);
     ctx.globalAlpha = .55; ctx.fillText("a podcast", W - P, 150); ctx.globalAlpha = 1;
     ctx.textAlign = "left";
   } else {
     ctx.font = "600 22px Inter, system-ui, sans-serif"; ctx.fillStyle = t.ink; ctx.globalAlpha = .55;
-    ctx.fillText("Nobody’s Business — a podcast", P, 180); ctx.globalAlpha = 1;
+    ctx.fillText("Nobody’s Business — a podcast", P, d==="bunting" ? H - 80 : 180); ctx.globalAlpha = 1;
+  }
+}
+
+
+function burst(el){
+  const b = el.getBoundingClientRect(), cols = ['#ff5c39','#5b3cff','#ffd23f','#ff9de2','#7cf2d0'];
+  for (let i=0;i<28;i++){
+    const p = document.createElement('i');
+    p.style.cssText = `position:fixed;left:${b.left+b.width/2}px;top:${b.top+b.height/2}px;width:${6+Math.random()*6}px;height:${6+Math.random()*6}px;background:${cols[i%5]};border-radius:${Math.random()<.5?'50%':'2px'};pointer-events:none;z-index:99;transition:transform .9s cubic-bezier(.2,.7,.3,1),opacity .9s`;
+    document.body.appendChild(p);
+    const a = Math.random()*Math.PI*2, d = 60+Math.random()*110;
+    requestAnimationFrame(() => { p.style.transform = `translate(${Math.cos(a)*d}px,${Math.sin(a)*d+40}px) rotate(${Math.random()*540}deg)`; p.style.opacity = 0; });
+    setTimeout(() => p.remove(), 1000);
   }
 }
 
@@ -497,11 +592,11 @@ swatches();
 $('age').oninput = () => { S.age = +$('age').value; S.pick = 0; $('agebig').textContent = S.age; writeText(); draw(); };
 $('name').oninput = () => { S.name = $('name').value; writeText(); draw(); };
 ['t-hello','t-body','t-sign'].forEach(id => $(id).oninput = draw);
-$('another').onclick = () => { S.pick++; writeText(); draw(); };
-$('shake').onclick = () => { S.seed = Math.floor(Math.random()*1e9); draw(); };
+$('another').onclick = e => { S.pick++; writeText(); draw(); burst(e.currentTarget); };
+$('shake').onclick = e => { S.seed = Math.floor(Math.random()*1e9); draw(); burst(e.currentTarget); };
 
-$('download').onclick = () => {
-  draw();
+$('download').onclick = e => {
+  draw(); burst(e.currentTarget);
   cv.toBlob(b => {
     const a = document.createElement('a');
     a.download = `birthday-card-${S.age}.png`;
