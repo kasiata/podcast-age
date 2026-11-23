@@ -3,145 +3,144 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Late Breakthrough Gallery — Nobody's Business</title>
+<title>Late Breakthrough Birthday Cards — Nobody's Business</title>
 <meta name="description" content="A birthday card generator for anyone who thinks it's too late. Pick an age and find out who did their best work after it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Shrikhand&display=swap" rel="stylesheet">
 <style>
   :root{
-    --mist:#e3e2df; --veil:#f2f1ee; --line:#e0dfdb; --haze:#b9c4cb;
-    --slate:#2f363c; --dim:#7b7f83; --rose:#c46b80; --deep:#43323a;
+    --ink:#2f363c; --dim:#6b6f74; --paper:#fffaf3; --line:#eadfd3;
+    --pink:#ff4f79; --sun:#ffb800; --teal:#2ec4b6; --violet:#5e60ce;
     --cond:'Oswald','Arial Narrow',Impact,sans-serif;
+    --party:'Shrikhand',Georgia,serif;
     --serif:Georgia,'Times New Roman',serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--mist);color:var(--slate);font:18px/1.55 var(--serif);-webkit-font-smoothing:antialiased}
-  .page{max-width:900px;margin:0 auto;padding:28px 22px 80px}
+  body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 8% 6%, #ffd6e0 0 90px, transparent 91px),radial-gradient(circle at 96% 3%, #fff0b3 0 120px, transparent 121px),radial-gradient(circle at 92% 70%, #c7f9cc 0 70px, transparent 71px);
+    background-attachment:fixed}
+  .page{max-width:1120px;margin:0 auto;padding:24px 22px 70px}
 
-  .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--slate);padding-bottom:8px}
-  .brand{font:600 22px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
-  .brand .ap{color:var(--rose)}
+  .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:8px}
+  .brand{font:600 20px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
+  .brand .ap{color:#c46b80}
   .issue{font:500 12px/1 var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
-  .rule2{border-bottom:1px solid var(--slate);margin-top:3px}
 
-  .hero{position:relative;padding:44px 0 26px}
-  .kicker{font:500 13px/1 var(--cond);letter-spacing:.25em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
-  h1{font:600 clamp(48px,10vw,92px)/.92 var(--cond);text-transform:uppercase;letter-spacing:-.01em}
-  .dek{font-style:italic;font-size:clamp(19px,3vw,23px);line-height:1.4;margin-top:18px;max-width:36ch}
-  .sticker{position:absolute;right:0;top:40px;width:122px;height:122px;border-radius:50%;
-    background:var(--slate);color:var(--veil);display:flex;align-items:center;justify-content:center;text-align:center;
-    font:500 15px/1.1 var(--cond);letter-spacing:.08em;text-transform:uppercase;transform:rotate(12deg);padding:12px}
-  @media (max-width:680px){.sticker{position:static;transform:rotate(-4deg);margin:22px 0 0;width:108px;height:108px;font-size:13px}}
+  .hero{padding:34px 0 24px;display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap}
+  h1{font:400 clamp(44px,7vw,80px)/.95 var(--party);letter-spacing:.005em}
+  h1 .c1{color:var(--pink)} h1 .c2{color:var(--violet)} h1 .c3{color:var(--teal)}
+  .dek{font-style:italic;font-size:clamp(18px,2.2vw,21px);max-width:34ch;margin-top:14px}
+  .badge{width:130px;height:130px;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;
+    font:400 19px/1.05 var(--party);transform:rotate(10deg);flex:none;box-shadow:0 0 0 6px var(--paper),0 0 0 8px var(--sun)}
 
-  h2{font:600 26px/1 var(--cond);text-transform:uppercase;letter-spacing:.04em;border-top:1px solid var(--haze);padding-top:16px;margin:30px 0 18px}
+  .maker{display:grid;grid-template-columns:minmax(300px,1fr) minmax(320px,1.15fr);gap:34px;align-items:start}
+  @media (max-width:860px){.maker{grid-template-columns:1fr}}
 
-  /* generator */
-  .maker{display:grid;grid-template-columns:1fr 1.25fr;gap:28px;align-items:start}
-  @media (max-width:760px){.maker{grid-template-columns:1fr}}
-  label{display:block;font:500 13px/1 var(--cond);letter-spacing:.16em;text-transform:uppercase;margin:0 0 8px}
-  .field{margin-bottom:20px}
-  input[type=number],input[type=text]{width:100%;font:20px var(--serif);color:var(--slate);background:var(--veil);border:1.5px solid var(--slate);padding:10px 12px;border-radius:0}
-  input[type=range]{width:100%;accent-color:var(--slate)}
-  .agebig{font:600 64px/1 var(--cond);margin-bottom:6px}
-  .btns{display:flex;gap:10px;flex-wrap:wrap}
-  .btn{font:600 15px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;background:var(--deep);color:var(--veil);border:0;padding:14px 20px;cursor:pointer}
-  .ghost{font:500 14px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1.5px solid var(--slate);color:var(--slate);padding:12px 16px;cursor:pointer}
-  .ghost:hover{background:var(--veil)}
-  .note{font-size:15px;color:var(--dim);margin-top:10px;min-height:1.4em}
+  .panel{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:22px 22px 18px;box-shadow:6px 6px 0 var(--ink)}
+  .step{font:600 13px/1 var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin:4px 0 12px}
+  .step.s2{color:var(--violet)} .step.s3{color:var(--teal)}
+  .group{margin-bottom:18px}
+  .lab{display:block;font:500 13px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chips button{font:500 14px/1 var(--cond);letter-spacing:.06em;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:8px 13px;cursor:pointer;transition:transform .1s}
+  .chips button:hover{transform:translateY(-1px)}
+  .chips button[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .agewrap{display:flex;align-items:center;gap:14px}
+  .agebig{font:400 44px/1 var(--party);color:var(--pink);min-width:84px}
+  input[type=range]{flex:1;accent-color:var(--pink)}
+  input[type=text],textarea{width:100%;font:17px/1.35 var(--serif);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:10px;padding:9px 11px}
+  textarea{resize:vertical;min-height:44px}
+  .swatches{display:flex;gap:10px;flex-wrap:wrap}
+  .swatches button{width:44px;height:44px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--ink);cursor:pointer;position:relative;overflow:hidden}
+  .swatches button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink),0 0 0 6px var(--sun)}
+  .swatches button span{position:absolute;inset:auto 0 0 0;height:40%}
+  hr{border:0;border-top:2px dashed var(--line);margin:18px 0}
 
-  .card{background:var(--veil);border:1px solid var(--line);box-shadow:0 18px 40px -24px rgba(47,54,60,.45);aspect-ratio:4/5;padding:9% 9% 7%;display:flex;flex-direction:column}
-  .card .c-top{font:500 12px/1 var(--cond);letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
-  .card .c-hello{font:600 clamp(38px,6vw,58px)/.98 var(--cond);text-transform:uppercase;margin-top:auto}
-  .card .c-bar{width:56px;height:5px;background:var(--rose);margin:22px 0}
-  .card .c-body{font-size:clamp(18px,2.4vw,22px);line-height:1.4}
-  .card .c-sign{font-style:italic;font-size:clamp(17px,2.2vw,20px);margin-top:16px;color:var(--deep)}
-  .card .c-foot{font:500 11px/1 var(--cond);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:auto;padding-top:22px;border-top:1px solid var(--haze)}
+  .preview{position:sticky;top:16px}
+  #cv{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 22px 50px -24px rgba(47,54,60,.55);background:#eee}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .btn{font:600 15px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;border:2px solid var(--ink);border-radius:999px;padding:13px 18px;cursor:pointer;background:var(--pink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
+  .btn.alt{background:var(--sun);color:var(--ink)} .btn.ghost{background:#fff;color:var(--ink)}
+  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .note{font-size:14px;color:var(--dim);margin-top:10px;min-height:1.3em}
 
-  /* gallery */
-  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-  .filters button{font:500 13px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;background:transparent;border:1.5px solid var(--slate);color:var(--slate);padding:9px 12px;cursor:pointer}
-  .filters button[aria-pressed="true"]{background:var(--slate);color:var(--veil)}
-  .kinds-key{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
-  @media (max-width:600px){.kinds-key{grid-template-columns:1fr}}
-  .kinds-key dt{font:600 15px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
-  .kinds-key dd{font-size:15px;color:var(--dim)}
-  #kinds button{border-color:var(--deep)}
-  #kinds button[aria-pressed="true"]{background:var(--deep)}
-  td.who em.tag{display:block;font:500 11px/1 var(--cond);font-style:normal;letter-spacing:.14em;text-transform:uppercase;color:var(--deep);margin-top:6px}
-  table{width:100%;border-collapse:collapse;font-size:16px}
-  th{font:500 12px/1 var(--cond);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);text-align:left;padding:10px 8px;border-bottom:2px solid var(--slate)}
-  td{padding:11px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-  td.age{font:600 26px/1 var(--cond);white-space:nowrap;width:80px}
-  td.who strong{display:block}
-  td.who span{font-size:14px;color:var(--dim)}
-  @media (max-width:600px){th.f,td.f{display:none}}
-  .small{font-size:14px;color:var(--dim);margin-top:14px}
-
-  footer{margin-top:60px;border-top:1px solid var(--haze);padding-top:16px;font-size:14px;color:var(--dim);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer{margin-top:54px;border-top:2px solid var(--ink);padding-top:14px;font-size:14px;color:var(--dim);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 <div class="page">
 
-  <header>
-    <div class="mast">
-      <div class="brand">Nobody<span class="ap">’</span>s Business</div>
-      <div class="issue">Freebie · Age</div>
-    </div>
-    <div class="rule2"></div>
+  <header class="mast">
+    <div class="brand">Nobody<span class="ap">’</span>s Business</div>
+    <div class="issue">Freebie · Age</div>
   </header>
 
   <section class="hero">
-    <div class="kicker">Birthday card generator</div>
-    <h1>The Late<br>Breakthrough<br>Gallery</h1>
-    <p class="dek">For anyone who thinks it’s too late. Pick an age and find out who did their best work after it.</p>
-    <div class="sticker">No<br>pressure</div>
+    <div>
+      <h1><span class="c1">Late</span> <span class="c2">Breakthrough</span><br><span class="c3">Birthday Cards</span></h1>
+      <p class="dek">For anyone who thinks it’s too late. Pick an age and find out who did their best work after it.</p>
+    </div>
+    <div class="badge">No<br>pressure!</div>
   </section>
 
-  <h2>Make a card</h2>
   <div class="maker">
-    <div>
-      <div class="field">
-        <label for="age">Age</label>
-        <div class="agebig" id="agebig">60</div>
-        <input type="range" id="age" min="50" max="105" value="60">
+    <div class="panel">
+      <div class="step">1 · Who is it for?</div>
+      <div class="group">
+        <span class="lab">Age</span>
+        <div class="agewrap"><div class="agebig" id="agebig">60</div><input type="range" id="age" min="45" max="105" value="60" aria-label="Age"></div>
       </div>
-      <div class="field">
-        <label for="name">Name (optional)</label>
-        <input type="text" id="name" maxlength="28" placeholder="e.g. Marta">
+      <div class="group">
+        <span class="lab">Match them with</span>
+        <div class="chips" id="gender"></div>
       </div>
-      <div class="btns">
+      <div class="group">
+        <span class="lab">Creative discipline</span>
+        <div class="chips" id="disc"></div>
+      </div>
+      <div class="group">
+        <span class="lab">Their favourite excuse</span>
+        <div class="chips" id="excuse"></div>
+      </div>
+      <div class="group">
+        <span class="lab" for="name">Name (optional)</span>
+        <input type="text" id="name" maxlength="24" placeholder="e.g. Marta">
+      </div>
+
+      <hr>
+      <div class="step s2">2 · Make it pretty</div>
+      <div class="group">
+        <span class="lab">Colours</span>
+        <div class="swatches" id="themes"></div>
+      </div>
+      <div class="group">
+        <span class="lab">Decoration</span>
+        <div class="chips" id="decor"></div>
+      </div>
+      <div class="group">
+        <span class="lab">Lettering</span>
+        <div class="chips" id="font"></div>
+      </div>
+
+      <hr>
+      <div class="step s3">3 · Tweak the words</div>
+      <div class="group"><span class="lab">Headline</span><textarea id="t-hello" rows="1"></textarea></div>
+      <div class="group"><span class="lab">Message</span><textarea id="t-body" rows="3"></textarea></div>
+      <div class="group"><span class="lab">Sign-off</span><textarea id="t-sign" rows="1"></textarea></div>
+    </div>
+
+    <div class="preview">
+      <canvas id="cv" width="1080" height="1350" aria-label="Birthday card preview"></canvas>
+      <div class="actions">
         <button class="btn" id="another">Another artist</button>
-        <button class="ghost" id="download">Download card</button>
-        <button class="ghost" id="copy">Copy text</button>
+        <button class="btn alt" id="shake">Shake the confetti</button>
+        <button class="btn ghost" id="download">Download card</button>
+        <button class="btn ghost" id="copy">Copy text</button>
       </div>
       <p class="note" id="note"></p>
     </div>
-
-    <div class="card" id="card">
-      <div class="c-top">The Late Breakthrough Gallery</div>
-      <div class="c-hello" id="c-hello"></div>
-      <div class="c-bar"></div>
-      <div class="c-body" id="c-body"></div>
-      <div class="c-sign" id="c-sign"></div>
-      <div class="c-foot">Nobody’s Business · a podcast</div>
-    </div>
   </div>
-
-  <h2>The gallery</h2>
-  <dl class="kinds-key">
-    <div><dt>Late start</dt><dd>First real success, or first work at all, after 50.</dd></div>
-    <div><dt>Late peak</dt><dd>Known before, but did their best work after 50.</dd></div>
-    <div><dt>Still going</dt><dd>Kept making work into their 90s and beyond.</dd></div>
-  </dl>
-  <div class="filters" id="kinds"></div>
-  <div class="filters" id="filters"></div>
-  <table>
-    <thead><tr><th>Age</th><th>Who</th><th class="f">Field</th><th>What happened</th></tr></thead>
-    <tbody id="rows"></tbody>
-  </table>
-  <p class="small">A “~” means the date of the work or the artist’s birth is approximate.</p>
 
   <footer>
     <span>A freebie from <em>Nobody’s Business</em> — a podcast on the hidden economics of artistic life.</span>
@@ -150,214 +149,355 @@
 </div>
 
 <script>
-// a: age used for the card, label: age shown in the table, g: field group
-// t: table text, c: card sentence (follows "At {a}, ")
+// [age, name, gender (w/m), discipline (music/words/art/stage), sentence that follows "At {age}, "]
 const G = [
- {a:50,label:"50",n:"Raymond Chandler",o:"USA/UK",f:"Writer",g:"Writing",t:"First novel, The Big Sleep, after losing his job as an oil executive",c:"Raymond Chandler published his first novel, The Big Sleep."},
- {a:50,label:"50",n:"Jean-Philippe Rameau",o:"France",f:"Composer",g:"Music",t:"First opera, Hippolyte et Aricie; all his major stage works followed",c:"Jean-Philippe Rameau premiered his first opera. All his major stage works came after."},
- {a:52,label:"~52",n:"Tomasz Stańko",o:"Poland",f:"Jazz trumpeter",g:"Music",t:"Matka Joanna, the ECM album that brought him international acclaim",c:"Tomasz Stańko released Matka Joanna, the album that finally took him around the world."},
- {a:53,label:"53–58",n:"Annie Proulx",o:"USA",f:"Writer",g:"Writing",t:"First book, Heart Songs, after years as a journalist; Pulitzer Prize for The Shipping News at 58",c:"Annie Proulx published her first book. The Pulitzer came five years later."},
- {a:56,label:"~56",n:"Rembrandt",o:"Netherlands",f:"Painter",g:"Visual art",t:"The Syndics, The Jewish Bride and the late self-portraits",c:"Rembrandt painted The Syndics. The Jewish Bride and the great late self-portraits were still to come."},
- {a:57,label:"57",n:"Miguel de Cervantes",o:"Spain",f:"Writer",g:"Writing",t:"Don Quixote, Part One",c:"Miguel de Cervantes published Don Quixote."},
- {a:57,label:"57–66",n:"Anton Bruckner",o:"Austria",f:"Composer",g:"Music",t:"Symphonies 7 and 8, the works that made his name",c:"Anton Bruckner began the Seventh Symphony, the work that finally made his name."},
- {a:58,label:"58",n:"Henryk Górecki",o:"Poland",f:"Composer",g:"Music",t:"His Symphony No. 3, written 16 years earlier, became a worldwide bestselling album",c:"Henryk Górecki saw his Symphony No. 3 become a worldwide bestseller, 16 years after he wrote it."},
- {a:58,label:"~58",n:"Giuseppe Tomasi di Lampedusa",o:"Italy",f:"Writer",g:"Writing",t:"Wrote The Leopard, his only novel",c:"Giuseppe Tomasi di Lampedusa started writing The Leopard, his only novel."},
- {a:59,label:"~59",n:"Daniel Defoe",o:"England",f:"Writer",g:"Writing",t:"Robinson Crusoe",c:"Daniel Defoe published Robinson Crusoe."},
- {a:58,label:"58–62",n:"Penelope Fitzgerald",o:"UK",f:"Writer",g:"Writing",t:"First book after years as a teacher and bookshop assistant; first novel at 60, Booker Prize at 62",c:"Penelope Fitzgerald published her first book. Her first novel came two years later, and the Booker two years after that."},
- {a:60,label:"60",n:"Bernardine Evaristo",o:"UK",f:"Writer",g:"Writing",t:"Booker Prize for Girl, Woman, Other, after 35 years of writing",c:"Bernardine Evaristo won the Booker Prize, after 35 years of writing."},
- {a:60,label:"~60",n:"José Saramago",o:"Portugal",f:"Writer",g:"Writing",t:"Breakthrough with Baltasar and Blimunda; Nobel Prize at 76",c:"José Saramago had his breakthrough novel. The Nobel Prize came at 76."},
- {a:60,label:"60",n:"Peter Brook",o:"UK/France",f:"Theatre director",g:"Film & theatre",t:"The Mahabharata, nine hours long",c:"Peter Brook staged The Mahabharata, all nine hours of it."},
- {a:61,label:"61",n:"Leoš Janáček",o:"Czechia",f:"Composer",g:"Music",t:"Jenůfa finally staged in Prague; his major works followed between 67 and 74",c:"Leoš Janáček finally had Jenůfa staged in Prague. His greatest works were still ahead of him."},
- {a:62,label:"62",n:"Clint Eastwood",o:"USA",f:"Film director",g:"Film & theatre",t:"Unforgiven; Million Dollar Baby won Best Picture when he was 74",c:"Clint Eastwood made Unforgiven."},
- {a:62,label:"62",n:"Charles Bradley",o:"USA",f:"Singer",g:"Music",t:"Debut album, after decades as a cook and a James Brown impersonator",c:"Charles Bradley released his debut album, after decades as a cook."},
- {a:62,label:"62",n:"Edward Elgar",o:"UK",f:"Composer",g:"Music",t:"Cello Concerto",c:"Edward Elgar wrote his Cello Concerto."},
- {a:64,label:"64",n:"Ingmar Bergman",o:"Sweden",f:"Filmmaker",g:"Film & theatre",t:"Fanny and Alexander",c:"Ingmar Bergman made Fanny and Alexander."},
- {a:64,label:"64",n:"Voltaire",o:"France",f:"Writer",g:"Writing",t:"Candide, the book he is remembered for; his campaign for tolerance followed in his late 60s",c:"Voltaire published Candide, the book he is still remembered for."},
- {a:65,label:"65",n:"Laura Ingalls Wilder",o:"USA",f:"Writer",g:"Writing",t:"First Little House book",c:"Laura Ingalls Wilder published her first Little House book."},
- {a:65,label:"65",n:"Harry Mulisch",o:"Netherlands",f:"Writer",g:"Writing",t:"The Discovery of Heaven, voted the best Dutch book of all time",c:"Harry Mulisch published The Discovery of Heaven, later voted the best Dutch book of all time."},
- {a:66,label:"66",n:"Joseph Haydn",o:"Austria",f:"Composer",g:"Music",t:"The Creation",c:"Joseph Haydn premiered The Creation."},
- {a:66,label:"66",n:"Frank McCourt",o:"Ireland/USA",f:"Writer",g:"Writing",t:"Angela’s Ashes, his first book, after 30 years of teaching; Pulitzer Prize",c:"Frank McCourt published his first book, Angela’s Ashes, after 30 years of teaching. It won the Pulitzer."},
- {a:67,label:"67–72",n:"Luis Buñuel",o:"Spain",f:"Filmmaker",g:"Film & theatre",t:"Belle de Jour; The Discreet Charm of the Bourgeoisie (Oscar)",c:"Luis Buñuel made Belle de Jour. His Oscar came five years later."},
- {a:68,label:"68",n:"Frank Lloyd Wright",o:"USA",f:"Architect",g:"Other",t:"Fallingwater; he began the Guggenheim at 76",c:"Frank Lloyd Wright designed Fallingwater. He started the Guggenheim at 76."},
- {a:68,label:"68",n:"Le Corbusier",o:"Switzerland/France",f:"Architect",g:"Other",t:"The chapel at Ronchamp",c:"Le Corbusier completed the chapel at Ronchamp."},
- {a:72,label:"69–73",n:"Ibrahim Ferrer",o:"Cuba",f:"Singer",g:"Music",t:"Retired and shining shoes when Buena Vista Social Club found him; solo debut at 72, Latin Grammy for Best New Artist at 73",c:"Ibrahim Ferrer released his first solo album. A year later he won a Latin Grammy for Best New Artist."},
- {a:70,label:"70",n:"Marguerite Duras",o:"France",f:"Writer",g:"Writing",t:"The Lover, Prix Goncourt",c:"Marguerite Duras published The Lover and won the Prix Goncourt."},
- {a:70,label:"70",n:"Mary Wesley",o:"UK",f:"Writer",g:"Writing",t:"First adult novel; ten bestsellers followed",c:"Mary Wesley published her first adult novel. Ten bestsellers followed."},
- {a:70,label:"70",n:"Louise Bourgeois",o:"France/USA",f:"Visual artist",g:"Visual art",t:"First retrospective, at MoMA; she made Maman, the giant spider, at 87",c:"Louise Bourgeois had her first retrospective. The giant spider came at 87."},
- {a:70,label:"70",n:"Magda Szabó",o:"Hungary",f:"Writer",g:"Writing",t:"The Door",c:"Magda Szabó published The Door."},
- {a:70,label:"70–71",n:"Piet Mondrian",o:"Netherlands",f:"Painter",g:"Visual art",t:"Broadway Boogie Woogie; Victory Boogie Woogie left unfinished at his death",c:"Piet Mondrian painted Broadway Boogie Woogie."},
- {a:70,label:"70 & 80",n:"Ken Loach",o:"UK",f:"Filmmaker",g:"Film & theatre",t:"Two Palmes d’Or",c:"Ken Loach won the Palme d’Or. He won it again at 80."},
- {a:71,label:"71",n:"Kazuo Ohno",o:"Japan",f:"Dancer",g:"Dance",t:"First solo, Admiring La Argentina; performed until about 100",c:"Kazuo Ohno danced his first solo. He kept performing until about 100."},
- {a:71,label:"~71",n:"Katsushika Hokusai",o:"Japan",f:"Printmaker",g:"Visual art",t:"The Great Wave off Kanagawa",c:"Katsushika Hokusai made The Great Wave."},
- {a:72,label:"72",n:"Mary Delany",o:"UK",f:"Visual artist",g:"Visual art",t:"Invented her botanical “paper mosaics”; she made nearly a thousand",c:"Mary Delany invented her botanical paper mosaics. She made nearly a thousand."},
- {a:73,label:"73",n:"Giuseppe Verdi",o:"Italy",f:"Composer",g:"Music",t:"Otello; Falstaff at 79",c:"Giuseppe Verdi premiered Otello. Falstaff came at 79."},
- {a:73,label:"73",n:"Harriet Doerr",o:"USA",f:"Writer",g:"Writing",t:"First novel, Stones for Ibarra; National Book Award",c:"Harriet Doerr published her first novel and won the National Book Award."},
- {a:73,label:"73",n:"Wisława Szymborska",o:"Poland",f:"Poet",g:"Writing",t:"Nobel Prize",c:"Wisława Szymborska won the Nobel Prize."},
- {a:73,label:"73–82",n:"Leonard Cohen",o:"Canada",f:"Songwriter",g:"Music",t:"World tour from 73 to 79; You Want It Darker at 82",c:"Leonard Cohen set off on a world tour that lasted until he was 79."},
- {a:73,label:"73",n:"Imre Kertész",o:"Hungary",f:"Writer",g:"Writing",t:"Nobel Prize",c:"Imre Kertész won the Nobel Prize."},
- {a:73,label:"73",n:"Lucian Freud",o:"UK",f:"Painter",g:"Visual art",t:"Benefits Supervisor Sleeping",c:"Lucian Freud painted Benefits Supervisor Sleeping."},
- {a:73,label:"73–77",n:"Francisco Goya",o:"Spain",f:"Painter",g:"Visual art",t:"The Black Paintings, painted on the walls of his own house",c:"Francisco Goya started the Black Paintings, on the walls of his own house."},
- {a:74,label:"74",n:"Olivier Messiaen",o:"France",f:"Composer",g:"Music",t:"Saint François d’Assise, his only opera, after eight years of work",c:"Olivier Messiaen premiered his only opera, after eight years of work."},
- {a:74,label:"74",n:"David Hockney",o:"UK",f:"Painter",g:"Visual art",t:"The Yorkshire landscapes and iPad drawings of A Bigger Picture",c:"David Hockney filled the Royal Academy with Yorkshire landscapes and iPad drawings."},
- {a:74,label:"74–86",n:"Claude Monet",o:"France",f:"Painter",g:"Visual art",t:"The great Water Lilies panels, painted with failing eyesight",c:"Claude Monet began the great Water Lilies panels, with failing eyesight."},
- {a:75,label:"~75",n:"Alma Thomas",o:"USA",f:"Painter",g:"Visual art",t:"Found her signature abstract style after retiring from teaching; solo show at the Whitney at 80",c:"Alma Thomas found her signature style. She had a solo show at the Whitney at 80."},
- {a:75,label:"75",n:"Theodor Fontane",o:"Germany",f:"Writer",g:"Writing",t:"Effi Briest; he wrote his first novel at 58",c:"Theodor Fontane published Effi Briest."},
- {a:77,label:"77",n:"Henri Matisse",o:"France",f:"Visual artist",g:"Visual art",t:"Jazz, the paper cut-outs he made when he could no longer paint standing up",c:"Henri Matisse made Jazz, with scissors and paper."},
- {a:78,label:"78",n:"Grandma Moses",o:"USA",f:"Painter",g:"Visual art",t:"Started painting seriously; first solo show at 80",c:"Grandma Moses started painting seriously."},
- {a:79,label:"79",n:"Witold Lutosławski",o:"Poland",f:"Composer",g:"Music",t:"Symphony No. 4, the crown of his late style",c:"Witold Lutosławski wrote his Fourth Symphony."},
- {a:80,label:"80 & 84",n:"Richard Strauss",o:"Germany",f:"Composer",g:"Music",t:"Metamorphosen, then the Four Last Songs",c:"Richard Strauss wrote Metamorphosen. The Four Last Songs came at 84."},
- {a:81,label:"81",n:"Johann Wolfgang von Goethe",o:"Germany",f:"Writer",g:"Writing",t:"Finished Faust, Part Two, sixty years after starting Faust",c:"Goethe finished Faust, sixty years after he started it."},
- {a:82,label:"82",n:"Alberta Hunter",o:"USA",f:"Singer",g:"Music",t:"Returned to singing after 20 years as a nurse, with a sold-out residency in New York",c:"Alberta Hunter went back to singing after 20 years as a nurse, and sold out New York."},
- {a:82,label:"~82",n:"Frans Hals",o:"Netherlands",f:"Painter",g:"Visual art",t:"The Haarlem almshouse regents, his darkest and freest portraits",c:"Frans Hals painted the Haarlem almshouse regents, the freest portraits of his life."},
- {a:84,label:"84",n:"Iris Apfel",o:"USA",f:"Fashion",g:"Other",t:"Became a style icon after a museum show of her wardrobe",c:"Iris Apfel became a style icon."},
- {a:85,label:"~85",n:"Bill Traylor",o:"USA",f:"Visual artist",g:"Visual art",t:"Began drawing on a street corner in Montgomery; made over a thousand works in three years",c:"Bill Traylor started drawing on a street corner, and made over a thousand works in three years."},
- {a:85,label:"~85",n:"Titian",o:"Italy",f:"Painter",g:"Visual art",t:"The Flaying of Marsyas, painted almost with his fingers",c:"Titian painted The Flaying of Marsyas, almost with his fingers."},
- {a:86,label:"86",n:"Paula Rego",o:"Portugal/UK",f:"Painter",g:"Visual art",t:"Major Tate retrospective, her biggest recognition",c:"Paula Rego had her major retrospective at Tate."},
- {a:87,label:"87",n:"Etel Adnan",o:"Lebanon/France",f:"Painter & poet",g:"Visual art",t:"International breakthrough at documenta 13",c:"Etel Adnan had her international breakthrough at documenta."},
- {a:87,label:"87",n:"Doris Lessing",o:"UK",f:"Writer",g:"Writing",t:"Nobel Prize",c:"Doris Lessing won the Nobel Prize."},
- {a:88,label:"88–95",n:"Tony Bennett",o:"USA",f:"Singer",g:"Music",t:"Two duet albums with Lady Gaga, the second at 95",c:"Tony Bennett recorded an album with Lady Gaga. He made another at 95."},
- {a:89,label:"89",n:"Agnès Varda",o:"France",f:"Filmmaker",g:"Film & theatre",t:"Faces Places, an Oscar nomination; she started making art installations at 75",c:"Agnès Varda made Faces Places and got an Oscar nomination."},
- {a:89,label:"89",n:"Carmen Herrera",o:"Cuba/USA",f:"Painter",g:"Visual art",t:"Sold her first painting; Whitney retrospective at 101",c:"Carmen Herrera sold her first painting. Her Whitney retrospective came at 101."},
- {a:89,label:"89",n:"Compay Segundo",o:"Cuba",f:"Musician",g:"Music",t:"Buena Vista Social Club made him world famous",c:"Compay Segundo became world famous with Buena Vista Social Club."},
- {a:90,label:"90",n:"Merce Cunningham",o:"USA",f:"Choreographer",g:"Dance",t:"Made Nearly Ninety; he had choreographed with computer software since his 70s",c:"Merce Cunningham made a new piece called Nearly Ninety."},
- {a:91,label:"91",n:"Hans van Manen",o:"Netherlands",f:"Choreographer",g:"Dance",t:"Still travelling to polish his ballets before premieres; died at 93",c:"Hans van Manen was still travelling to polish his ballets before their premieres."},
- {a:92,label:"92",n:"György Kurtág",o:"Hungary",f:"Composer",g:"Music",t:"First opera, Fin de partie, premiered at La Scala",c:"György Kurtág premiered his first opera, at La Scala."},
- {a:95,label:"95",n:"Stanley Kunitz",o:"USA",f:"Poet",g:"Writing",t:"US Poet Laureate",c:"Stanley Kunitz became US Poet Laureate."},
- {a:96,label:"96",n:"Martha Graham",o:"USA",f:"Choreographer",g:"Dance",t:"Her last work, Maple Leaf Rag",c:"Martha Graham premiered a new work."},
- {a:97,label:"97",n:"Luchita Hurtado",o:"Venezuela/USA",f:"Painter",g:"Visual art",t:"First real recognition, after 80 years of painting",c:"Luchita Hurtado got her first real recognition, after 80 years of painting."},
- {a:98,label:"98",n:"Vera Molnár",o:"Hungary/France",f:"Visual artist",g:"Visual art",t:"Showed at the Venice Biennale; she had been making computer art since the 1960s",c:"Vera Molnár showed at the Venice Biennale."},
- {a:52,label:"52",n:"Richard Adams",o:"UK",f:"Writer",g:"Writing",t:"Watership Down, written while a civil servant; tens of millions of copies",c:"Richard Adams, a civil servant, published Watership Down."},
- {a:52,label:"52–68",n:"Andrea Camilleri",o:"Italy",f:"Writer",g:"Writing",t:"First novel, paid for himself after a career as a TV director; Inspector Montalbano arrived at 68, world fame after 70",c:"Andrea Camilleri published his first novel at his own expense. Inspector Montalbano arrived at 68."},
- {a:57,label:"57",n:"Anna Sewell",o:"UK",f:"Writer",g:"Writing",t:"Black Beauty, her only book, one of the bestselling books ever; she sold the rights for about £40 and died months later",c:"Anna Sewell published Black Beauty, her only book."},
- {a:60,label:"~60",n:"Peter de Smet (Hendrik Groen)",o:"Netherlands",f:"Writer",g:"Writing",t:"The Secret Diary of Hendrik Groen, 83¼ Years Old, written by an Amsterdam librarian; over a million copies and a TV series",c:"Peter de Smet, a librarian, published The Secret Diary of Hendrik Groen under a pseudonym."},
- {a:65,label:"~65",n:"Kazimierz Moczarski",o:"Poland",f:"Writer",g:"Writing",t:"Conversations with an Executioner, from his years sharing a cell with an SS general; a Polish school classic",c:"Kazimierz Moczarski finished Conversations with an Executioner, the book of his life."},
- {a:66,label:"66",n:"Louis Vivin",o:"France",f:"Painter",g:"Visual art",t:"First solo show after a career as a postal inspector; now in the Centre Pompidou",c:"Louis Vivin, a retired postal inspector, had his first solo show."},
- {a:70,label:"~70",n:"Alfred Wallis",o:"UK",f:"Painter",g:"Visual art",t:"Began painting with boat paint on cardboard after life as a fisherman and scrap dealer; now in Tate",c:"Alfred Wallis, a former fisherman, started painting with boat paint on cardboard."},
- {a:73,label:"73",n:"Norman Maclean",o:"USA",f:"Writer",g:"Writing",t:"A River Runs Through It, his first fiction, after a career as a literature professor",c:"Norman Maclean published his first fiction, A River Runs Through It."},
- {a:77,label:"~77",n:"Katarzyna Gawłowa",o:"Poland",f:"Painter",g:"Visual art",t:"After decades of painting and scraping the walls of her house, she was given plywood and started painting pictures; ranked by experts alongside Nikifor",c:"Katarzyna Gawłowa, who had painted only the walls of her house, was handed plywood and started painting pictures."},
- {a:96,label:"96",n:"Harry Bernstein",o:"UK/USA",f:"Writer",g:"Writing",t:"First book, The Invisible Wall, begun after his wife died; excellent reviews and translations",c:"Harry Bernstein published his first book."},
- {a:103,label:"103",n:"Elliott Carter",o:"USA",f:"Composer",g:"Music",t:"Still composing; he wrote dozens of works after turning 90",c:"Elliott Carter was still composing."},
- {a:103,label:"103",n:"Manoel de Oliveira",o:"Portugal",f:"Filmmaker",g:"Film & theatre",t:"Directed his last feature; he kept working until 106",c:"Manoel de Oliveira directed a feature film. He kept working until 106."}
-];
-const KIND = {
-  start: ["Raymond Chandler","Jean-Philippe Rameau","Tomasz Stańko","Annie Proulx","Henryk Górecki","Giuseppe Tomasi di Lampedusa","Daniel Defoe","Penelope Fitzgerald","Bernardine Evaristo","José Saramago","Leoš Janáček","Charles Bradley","Laura Ingalls Wilder","Frank McCourt","Ibrahim Ferrer","Mary Wesley","Louise Bourgeois","Kazuo Ohno","Mary Delany","Harriet Doerr","Alma Thomas","Grandma Moses","Alberta Hunter","Iris Apfel","Bill Traylor","Etel Adnan","Carmen Herrera","Compay Segundo","György Kurtág","Luchita Hurtado","Richard Adams","Andrea Camilleri","Anna Sewell","Peter de Smet (Hendrik Groen)","Kazimierz Moczarski","Louis Vivin","Alfred Wallis","Norman Maclean","Katarzyna Gawłowa","Harry Bernstein"],
-  going: ["Leonard Cohen","Tony Bennett","Merce Cunningham","Hans van Manen","Stanley Kunitz","Martha Graham","Vera Molnár","Elliott Carter","Manoel de Oliveira"]
-};
-G.sort((x, y) => x.a - y.a);
-G.forEach(x => { x.k = KIND.start.includes(x.n) ? "Late start" : KIND.going.includes(x.n) ? "Still going" : "Late peak"; });
-const SIGNS = ["No pressure.","Plenty of time.","Just saying.","You’re right on schedule.","Happy birthday, and get to work.","The best is probably still in the drawer."];
+ // ---------- music
+ [45,"Tina Turner","w","music","Tina Turner swept the Grammys with her comeback album, Private Dancer."],
+ [46,"Sharon Jones","w","music","Sharon Jones released her first album, after years as a prison guard and wedding singer."],
+ [50,"Jean-Philippe Rameau","m","music","Jean-Philippe Rameau premiered his first opera. All his major stage works came after."],
+ [51,"Cesária Évora","w","music","Cesária Évora released Miss Perfumado and the world finally heard her. Her Grammy came at 62."],
+ [52,"Tomasz Stańko","m","music","Tomasz Stańko released Matka Joanna, the album that finally took him around the world."],
+ [57,"Anton Bruckner","m","music","Anton Bruckner began the Seventh Symphony, the work that finally made his name."],
+ [58,"Henryk Górecki","m","music","Henryk Górecki saw his Symphony No. 3 become a worldwide bestseller, 16 years after he wrote it."],
+ [59,"Bettye LaVette","w","music","Bettye LaVette had her breakthrough, after four decades of near misses."],
+ [61,"Leoš Janáček","m","music","Leoš Janáček finally had Jenůfa staged in Prague. His greatest works were still ahead of him."],
+ [62,"Charles Bradley","m","music","Charles Bradley released his debut album, after decades as a cook."],
+ [62,"Edward Elgar","m","music","Edward Elgar wrote his Cello Concerto."],
+ [66,"Joseph Haydn","m","music","Joseph Haydn premiered The Creation."],
+ [67,"Omara Portuondo","w","music","Omara Portuondo became world famous with Buena Vista Social Club. She was still touring in her 90s."],
+ [68,"Sofia Gubaidulina","w","music","Sofia Gubaidulina premiered her St John Passion."],
+ [72,"Ibrahim Ferrer","m","music","Ibrahim Ferrer released his first solo album. A year later he won a Latin Grammy for Best New Artist."],
+ [73,"Giuseppe Verdi","m","music","Giuseppe Verdi premiered Otello. Falstaff came at 79."],
+ [73,"Leonard Cohen","m","music","Leonard Cohen set off on a world tour that lasted until he was 79."],
+ [74,"Olivier Messiaen","m","music","Olivier Messiaen premiered his only opera, after eight years of work."],
+ [79,"Witold Lutosławski","m","music","Witold Lutosławski wrote his Fourth Symphony."],
+ [80,"Richard Strauss","m","music","Richard Strauss wrote Metamorphosen. The Four Last Songs came at 84."],
+ [82,"Alberta Hunter","w","music","Alberta Hunter went back to singing after 20 years as a nurse, and sold out New York."],
+ [82,"Leonard Cohen","m","music","Leonard Cohen released You Want It Darker."],
+ [88,"Tony Bennett","m","music","Tony Bennett recorded an album with Lady Gaga. He made another at 95."],
+ [89,"Compay Segundo","m","music","Compay Segundo became world famous with Buena Vista Social Club."],
+ [92,"Vera Lynn","w","music","Vera Lynn had a number one album in Britain."],
+ [92,"György Kurtág","m","music","György Kurtág premiered his first opera, at La Scala."],
+ [103,"Elliott Carter","m","music","Elliott Carter was still composing."],
+ // ---------- words
+ [50,"Raymond Chandler","m","words","Raymond Chandler published his first novel, The Big Sleep."],
+ [52,"Richard Adams","m","words","Richard Adams, a civil servant, published Watership Down."],
+ [52,"Andrea Camilleri","m","words","Andrea Camilleri published his first novel at his own expense. Inspector Montalbano arrived at 68."],
+ [53,"Annie Proulx","w","words","Annie Proulx published her first book. The Pulitzer came five years later."],
+ [56,"Toni Morrison","w","words","Toni Morrison published Beloved. The Nobel Prize came six years later."],
+ [57,"Anna Sewell","w","words","Anna Sewell published Black Beauty, her only book."],
+ [57,"Miguel de Cervantes","m","words","Miguel de Cervantes published Don Quixote."],
+ [58,"Penelope Fitzgerald","w","words","Penelope Fitzgerald published her first book. Her first novel came two years later, and the Booker two years after that."],
+ [58,"Giuseppe Tomasi di Lampedusa","m","words","Giuseppe Tomasi di Lampedusa started writing The Leopard, his only novel."],
+ [59,"Daniel Defoe","m","words","Daniel Defoe published Robinson Crusoe."],
+ [60,"Bernardine Evaristo","w","words","Bernardine Evaristo won the Booker Prize, after 35 years of writing."],
+ [60,"José Saramago","m","words","José Saramago had his breakthrough novel. The Nobel Prize came at 76."],
+ [60,"Peter de Smet","m","words","Peter de Smet, an Amsterdam librarian, published The Secret Diary of Hendrik Groen under a pseudonym."],
+ [64,"Voltaire","m","words","Voltaire published Candide, the book he is still remembered for."],
+ [65,"Laura Ingalls Wilder","w","words","Laura Ingalls Wilder published her first Little House book."],
+ [65,"Harry Mulisch","m","words","Harry Mulisch published The Discovery of Heaven, later voted the best Dutch book of all time."],
+ [65,"Kazimierz Moczarski","m","words","Kazimierz Moczarski finished Conversations with an Executioner, the book of his life."],
+ [66,"Frank McCourt","m","words","Frank McCourt published his first book, Angela’s Ashes, after 30 years of teaching. It won the Pulitzer."],
+ [69,"Delia Owens","w","words","Delia Owens published her first novel, Where the Crawdads Sing."],
+ [70,"Marguerite Duras","w","words","Marguerite Duras published The Lover and won the Prix Goncourt."],
+ [70,"Mary Wesley","w","words","Mary Wesley published her first adult novel. Ten bestsellers followed."],
+ [70,"Magda Szabó","w","words","Magda Szabó published The Door."],
+ [73,"Harriet Doerr","w","words","Harriet Doerr published her first novel and won the National Book Award."],
+ [73,"Wisława Szymborska","w","words","Wisława Szymborska won the Nobel Prize."],
+ [73,"Norman Maclean","m","words","Norman Maclean published his first fiction, A River Runs Through It."],
+ [73,"Imre Kertész","m","words","Imre Kertész won the Nobel Prize."],
+ [75,"Theodor Fontane","m","words","Theodor Fontane published Effi Briest."],
+ [81,"Johann Wolfgang von Goethe","m","words","Goethe finished Faust, sixty years after he started it."],
+ [87,"Doris Lessing","w","words","Doris Lessing won the Nobel Prize."],
+ [91,"Diana Athill","w","words","Diana Athill won the Costa Award for her memoir about growing old."],
+ [95,"Stanley Kunitz","m","words","Stanley Kunitz became US Poet Laureate."],
+ [96,"Harry Bernstein","m","words","Harry Bernstein published his first book."],
+ // ---------- art & design
+ [59,"Louise Nevelson","w","art","Louise Nevelson had her breakthrough at MoMA with her black wall sculptures."],
+ [56,"Rembrandt","m","art","Rembrandt painted The Syndics. The Jewish Bride and the great late self-portraits were still to come."],
+ [63,"Marina Abramović","w","art","Marina Abramović sat silently at MoMA for three months, and three-quarters of a million people came."],
+ [63,"Lubaina Himid","w","art","Lubaina Himid won the Turner Prize."],
+ [66,"Louis Vivin","m","art","Louis Vivin, a retired postal inspector, had his first solo show."],
+ [68,"Frank Lloyd Wright","m","art","Frank Lloyd Wright designed Fallingwater. He started the Guggenheim at 76."],
+ [68,"Le Corbusier","m","art","Le Corbusier completed the chapel at Ronchamp."],
+ [70,"Louise Bourgeois","w","art","Louise Bourgeois had her first retrospective. The giant spider came at 87."],
+ [70,"Piet Mondrian","m","art","Piet Mondrian painted Broadway Boogie Woogie."],
+ [70,"Alfred Wallis","m","art","Alfred Wallis, a former fisherman, started painting with boat paint on cardboard."],
+ [71,"Katsushika Hokusai","m","art","Katsushika Hokusai made The Great Wave."],
+ [72,"Mary Delany","w","art","Mary Delany invented her botanical paper mosaics. She made nearly a thousand."],
+ [73,"Phyllida Barlow","w","art","Phyllida Barlow represented Britain at the Venice Biennale, after a lifetime of teaching."],
+ [73,"Lucian Freud","m","art","Lucian Freud painted Benefits Supervisor Sleeping."],
+ [73,"Francisco Goya","m","art","Francisco Goya started the Black Paintings, on the walls of his own house."],
+ [74,"David Hockney","m","art","David Hockney filled the Royal Academy with Yorkshire landscapes and iPad drawings."],
+ [74,"Claude Monet","m","art","Claude Monet began the great Water Lilies panels, with failing eyesight."],
+ [75,"Alma Thomas","w","art","Alma Thomas found her signature style. She had a solo show at the Whitney at 80."],
+ [77,"Henri Matisse","m","art","Henri Matisse made Jazz, with scissors and paper."],
+ [77,"Katarzyna Gawłowa","w","art","Katarzyna Gawłowa, who had painted only the walls of her house, was handed plywood and started painting pictures."],
+ [78,"Grandma Moses","w","art","Grandma Moses started painting seriously."],
+ [82,"Frans Hals","m","art","Frans Hals painted the Haarlem almshouse regents, the freest portraits of his life."],
+ [84,"Iris Apfel","w","art","Iris Apfel became a style icon."],
+ [85,"Bill Traylor","m","art","Bill Traylor started drawing on a street corner, and made over a thousand works in three years."],
+ [85,"Titian","m","art","Titian painted The Flaying of Marsyas, almost with his fingers."],
+ [86,"Paula Rego","w","art","Paula Rego had her major retrospective at Tate."],
+ [87,"Etel Adnan","w","art","Etel Adnan had her international breakthrough at documenta."],
+ [89,"Carmen Herrera","w","art","Carmen Herrera sold her first painting. Her Whitney retrospective came at 101."],
+ [93,"Maria Lassnig","w","art","Maria Lassnig won the Golden Lion in Venice, after decades of being overlooked."],
+ [97,"Luchita Hurtado","w","art","Luchita Hurtado got her first real recognition, after 80 years of painting."],
+ [98,"Vera Molnár","w","art","Vera Molnár showed at the Venice Biennale."],
+ [100,"Oscar Niemeyer","m","art","Oscar Niemeyer was still designing buildings. He kept going until 104."],
+ // ---------- stage, screen & dance
+ [52,"Christoph Waltz","m","stage","Christoph Waltz, after decades of Austrian and German TV, became an international star. The Oscar followed a year later."],
+ [75,"Akira Kurosawa","m","stage","Akira Kurosawa made Ran, his epic King Lear."],
+ [56,"Olympia Dukakis","w","stage","Olympia Dukakis won an Oscar, for Moonstruck."],
+ [60,"Peter Brook","m","stage","Peter Brook staged The Mahabharata, all nine hours of it."],
+ [61,"Helen Mirren","w","stage","Helen Mirren won her Oscar."],
+ [62,"Clint Eastwood","m","stage","Clint Eastwood made Unforgiven."],
+ [64,"Ingmar Bergman","m","stage","Ingmar Bergman made Fanny and Alexander."],
+ [67,"Luis Buñuel","m","stage","Luis Buñuel made Belle de Jour. His Oscar came five years later."],
+ [70,"Ken Loach","m","stage","Ken Loach won the Palme d’Or. He won it again at 80."],
+ [71,"Kazuo Ohno","m","stage","Kazuo Ohno danced his first solo. He kept performing until about 100."],
+ [72,"Ruth Gordon","w","stage","Ruth Gordon won her first Oscar, for Rosemary’s Baby."],
+ [73,"Youn Yuh-jung","w","stage","Youn Yuh-jung won an Oscar, for Minari."],
+ [80,"Jessica Tandy","w","stage","Jessica Tandy won the Oscar for Best Actress, the oldest winner ever."],
+ [85,"Emmanuelle Riva","w","stage","Emmanuelle Riva was nominated for an Oscar, for Amour."],
+ [87,"Gloria Stuart","w","stage","Gloria Stuart was nominated for an Oscar, for Titanic."],
+ [89,"Agnès Varda","w","stage","Agnès Varda made Faces Places and got an Oscar nomination."],
+ [90,"Merce Cunningham","m","stage","Merce Cunningham made a new piece called Nearly Ninety."],
+ [91,"Hans van Manen","m","stage","Hans van Manen was still travelling to polish his ballets before their premieres."],
+ [96,"Martha Graham","w","stage","Martha Graham premiered a new work."],
+ [103,"Manoel de Oliveira","m","stage","Manoel de Oliveira directed a feature film. He kept working until 106."]
+].map(([a,n,g,d,c]) => ({a,n,g,d,c})).sort((x,y) => x.a - y.a);
 
+const GENDERS = [["w","A woman"],["m","A man"],["any","Surprise me"]];
+const DISCS = [["music","Music"],["words","Words"],["art","Art & design"],["stage","Stage, screen & dance"],["any","Anything goes"]];
+const EXCUSES = {
+  none:  {label:"No excuses", lines:["No pressure.","Plenty of time.","Just saying.","You’re right on schedule.","The best is probably still in the drawer."]},
+  old:   {label:"“I’m too old”", lines:["Too old? They didn’t think so either.","Too old is a rumour.","So, about being too old…"]},
+  time:  {label:"“No time”", lines:["No time? They didn’t have any either.","One hour a week counts.","Time was never going to arrive on its own."]},
+  money: {label:"“No money”", lines:["No money? Neither had most of them.","Start small. Start anyway.","Cheap paper works too."]},
+  asked: {label:"“Nobody asked me”", lines:["Nobody asked them either.","Consider yourself asked.","Don’t wait for the invitation."]},
+  fine:  {label:"“I’m fine, thanks”", lines:["Of course you are. Happy birthday.","Fine is a lovely place to start from.","We believe you. Mostly."]}
+};
+const THEMES = [
+  {id:"pink", bg:"#ffd6e0", ink:"#3a1f2b", acc:["#ff4f79","#ffb800","#2ec4b6","#5e60ce"]},
+  {id:"sun", bg:"#ffe66d", ink:"#2b2d42", acc:["#ff6b6b","#4ecdc4","#1a535c","#ffffff"]},
+  {id:"mint", bg:"#c7f9cc", ink:"#22333b", acc:["#ff5d8f","#5e60ce","#ffb703","#ffffff"]},
+  {id:"sky", bg:"#cde7ff", ink:"#1b2a49", acc:["#ff7a59","#ffd23f","#3a86ff","#ffffff"]},
+  {id:"night", bg:"#1d1a4f", ink:"#fff3e0", acc:["#ff7ab6","#ffd166","#06d6a0","#8ecae6"]},
+  {id:"brand", bg:"#e3e2df", ink:"#2f363c", acc:["#c46b80","#43323a","#b9c4cb","#7b7f83"]}
+];
+const DECORS = [["confetti","Confetti"],["balloons","Balloons"],["candles","Candles"],["bunting","Bunting"],["all","Everything!"]];
+const FONTS = [["party","Party"],["bold","Bold"],["classic","Classic"]];
+
+const S = {age:60, gender:"any", disc:"any", excuse:"none", name:"", theme:"pink", decor:"confetti", font:"party", pick:0, seed:7};
 const $ = id => document.getElementById(id);
 const ord = n => { const s=["th","st","nd","rd"], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
-let pick = 0, signPick = 0;
 
-function compose(){
-  const age = +$('age').value;
-  const name = $('name').value.trim();
-  const hello = `Happy ${ord(age)}${name ? ', ' + name : ''}.`;
-  let body, sign;
-  const exact = G.filter(x => x.a === age);
-  if (exact.length){
-    const e = exact[pick % exact.length];
-    body = `At ${age}, ${e.c}`;
-    sign = SIGNS[signPick % SIGNS.length];
-  } else {
-    const next = G.filter(x => x.a > age);
-    if (next.length){
-      const nearest = next[0].a;
-      const pool = next.filter(x => x.a === nearest);
-      const e = pool[pick % pool.length];
-      const gap = nearest - age;
-      body = `At ${nearest}, ${e.c}`;
-      sign = `That gives you ${gap} more year${gap>1?'s':''}. ${SIGNS[signPick % SIGNS.length]}`;
-    } else {
-      body = `At 103, Elliott Carter was still composing. You have officially overtaken him.`;
-      sign = `Respect.`;
-    }
-  }
-  $('agebig').textContent = age;
-  $('c-hello').textContent = hello;
-  $('c-body').textContent = body;
-  $('c-sign').textContent = sign;
-  return {hello, body, sign};
+function chips(el, items, key){
+  $(el).innerHTML = items.map(([v,l]) => `<button type="button" data-v="${v}" aria-pressed="${S[key]===v}">${l}</button>`).join('');
+  $(el).querySelectorAll('button').forEach(b => b.onclick = () => {
+    S[key] = b.dataset.v; S.pick = 0;
+    $(el).querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x===b));
+    if (["gender","disc","excuse"].includes(key)) writeText(); draw();
+  });
+}
+function swatches(){
+  $('themes').innerHTML = THEMES.map(t => `<button type="button" data-v="${t.id}" aria-label="${t.id} colours" aria-pressed="${S.theme===t.id}" style="background:${t.bg}"><span style="background:${t.acc[0]}"></span></button>`).join('');
+  $('themes').querySelectorAll('button').forEach(b => b.onclick = () => {
+    S.theme = b.dataset.v; $('themes').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x===b)); draw();
+  });
 }
 
-$('age').addEventListener('input', () => { pick = 0; compose(); });
-$('name').addEventListener('input', compose);
-$('another').addEventListener('click', () => { pick++; signPick++; compose(); });
+function choose(){
+  const age = S.age;
+  let pool = G.filter(x => (S.gender==="any" || x.g===S.gender) && (S.disc==="any" || x.d===S.disc));
+  if (!pool.length) pool = G;
+  const above = pool.filter(x => x.a >= age);
+  if (above.length){
+    const first = above[0].a;
+    const win = above.filter(x => x.a <= first + 4);
+    return {e: win[S.pick % win.length], past:false};
+  }
+  const older = pool.slice().reverse();
+  return {e: older[S.pick % Math.min(3, older.length)], past:true};
+}
 
-$('copy').addEventListener('click', async () => {
-  const c = compose();
-  const text = `${c.hello}\n\n${c.body}\n${c.sign}\n\n— The Late Breakthrough Gallery\n${location.href}`;
+function writeText(){
+  const {e, past} = choose();
+  const name = S.name.trim();
+  const hello = `Happy ${ord(S.age)}${name ? ', ' + name : ''}!`;
+  let body = `At ${e.a}, ${e.c}`;
+  const gap = e.a - S.age;
+  if (past) body += ` You’re already past that. Show them how it’s done.`;
+  else if (gap > 0) body += ` That gives you ${gap} more year${gap>1?'s':''}.`;
+  const lines = EXCUSES[S.excuse].lines;
+  const sign = lines[S.pick % lines.length];
+  $('t-hello').value = hello; $('t-body').value = body; $('t-sign').value = sign;
+}
+
+// ---------- drawing
+const cv = $('cv'), ctx = cv.getContext('2d'), W = 1080, H = 1350;
+function rng(seed){ let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+
+function confetti(t, r, zones, n){
+  for (let i=0;i<n;i++){
+    const z = zones[Math.floor(r()*zones.length)];
+    const x = z[0] + r()*(z[2]-z[0]), y = z[1] + r()*(z[3]-z[1]);
+    ctx.save(); ctx.translate(x,y); ctx.rotate(r()*Math.PI);
+    ctx.fillStyle = t.acc[Math.floor(r()*t.acc.length)];
+    const k = r();
+    if (k < .45) ctx.fillRect(-9,-4,18,8);
+    else if (k < .8){ ctx.beginPath(); ctx.arc(0,0,6+r()*4,0,Math.PI*2); ctx.fill(); }
+    else { ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(8,7); ctx.lineTo(-8,7); ctx.closePath(); ctx.fill(); }
+    ctx.restore();
+  }
+}
+function balloons(t, r){
+  const spots = [[820,190],[930,250],[720,270],[180,210]];
+  const n = 3 + Math.floor(r()*2);
+  for (let i=0;i<n;i++){
+    const [bx,by] = spots[i];
+    const x = bx + (r()-.5)*30, y = by + (r()-.5)*30;
+    ctx.strokeStyle = t.ink; ctx.globalAlpha = .45; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x, y+78); ctx.bezierCurveTo(x-20, y+140, x+20, y+180, x-5, y+240); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = t.acc[i % t.acc.length];
+    ctx.beginPath(); ctx.ellipse(x, y, 58, 74, 0, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x-9,y+80); ctx.lineTo(x+9,y+80); ctx.lineTo(x,y+70); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.45)';
+    ctx.beginPath(); ctx.ellipse(x-20, y-26, 12, 20, -.4, 0, Math.PI*2); ctx.fill();
+  }
+}
+function bunting(t){
+  const y0 = 70, sag = 60;
+  ctx.strokeStyle = t.ink; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(-10,y0); ctx.quadraticCurveTo(W/2, y0+sag*2, W+10, y0); ctx.stroke();
+  const n = 11;
+  for (let i=0;i<n;i++){
+    const u = (i+.5)/n, x = -10 + u*(W+20);
+    const y = (1-u)*(1-u)*y0 + 2*(1-u)*u*(y0+sag*2) + u*u*y0;
+    ctx.fillStyle = t.acc[i % t.acc.length];
+    ctx.beginPath(); ctx.moveTo(x-38,y); ctx.lineTo(x+38,y); ctx.lineTo(x,y+78); ctx.closePath(); ctx.fill();
+  }
+}
+function candles(t, count){
+  const n = Math.max(1, Math.min(11, count));
+  const gap = 74, total = (n-1)*gap, x0 = W/2 - total/2, base = H - 150;
+  ctx.fillStyle = t.ink; ctx.globalAlpha = .12; ctx.fillRect(110, base, W-220, 16); ctx.globalAlpha = 1;
+  for (let i=0;i<n;i++){
+    const x = x0 + i*gap, h = 92;
+    ctx.fillStyle = t.acc[i % t.acc.length]; ctx.fillRect(x-12, base-h, 24, h);
+    ctx.fillStyle = 'rgba(255,255,255,.55)';
+    for (let s=0;s<4;s++) ctx.fillRect(x-12, base-h+10+s*22, 24, 6);
+    ctx.strokeStyle = t.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, base-h); ctx.lineTo(x, base-h-12); ctx.stroke();
+    ctx.fillStyle = '#ffb703'; ctx.beginPath(); ctx.ellipse(x, base-h-30, 11, 20, 0, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#fff3b0'; ctx.beginPath(); ctx.ellipse(x, base-h-25, 5, 10, 0, 0, Math.PI*2); ctx.fill();
+  }
+}
+
+function fontFor(kind, size){
+  if (S.font === "party") return kind==="head" ? `400 ${size}px Shrikhand, Georgia, serif` : `${size}px Georgia, serif`;
+  if (S.font === "bold") return kind==="head" ? `600 ${size}px Oswald, 'Arial Narrow', sans-serif` : `${size}px Georgia, serif`;
+  return kind==="head" ? `italic ${size}px Georgia, serif` : `${size}px Georgia, serif`;
+}
+function lines(text, maxW){
+  const out = [];
+  text.split('\n').forEach(par => {
+    let line = '';
+    par.split(' ').forEach(w => {
+      const t = line ? line + ' ' + w : w;
+      if (ctx.measureText(t).width > maxW && line){ out.push(line); line = w; } else line = t;
+    });
+    out.push(line);
+  });
+  return out;
+}
+
+function draw(){
+  const t = THEMES.find(x => x.id===S.theme);
+  const r = rng(S.seed);
+  const d = S.decor, all = d==="all";
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle = t.bg; ctx.fillRect(0,0,W,H);
+
+  // inner frame
+  ctx.strokeStyle = t.ink; ctx.globalAlpha = .18; ctx.lineWidth = 3;
+  ctx.strokeRect(36,36,W-72,H-72); ctx.globalAlpha = 1;
+
+  if (d==="bunting" || all) bunting(t);
+  if (d==="balloons" || all) balloons(t, r);
+  if (d==="confetti" || all) confetti(t, r, [[40,40,W-40,330],[40,330,120,H-40],[W-120,330,W-40,H-40],[40,H-120,W-40,H-40]], all ? 70 : 150);
+  if (d==="candles" || all) candles(t, Math.round(S.age/10));
+
+  const P = 110, maxW = W - 2*P;
+  const top = 370, bottom = (d==="candles"||all) ? H - 300 : H - 170;
+
+  const hello = $('t-hello').value, body = $('t-body').value, sign = $('t-sign').value;
+  // fit text by shrinking
+  let hs = S.font==="party" ? 96 : 104, bs = 40, ss = 36, hl, bl, sl, total;
+  for (let tries=0; tries<30; tries++){
+    ctx.font = fontFor("head", hs); hl = lines(hello, maxW);
+    ctx.font = fontFor("body", bs); bl = lines(body, maxW);
+    ctx.font = `italic ${ss}px Georgia, serif`; sl = lines(sign, maxW);
+    total = hl.length*hs*1.08 + 50 + bl.length*bs*1.4 + 30 + sl.length*ss*1.35;
+    if (total <= bottom - top) break;
+    hs *= .94; bs *= .95; ss *= .95;
+  }
+  let y = top + Math.max(0, (bottom - top - total)/2) + hs*.85;
+  ctx.fillStyle = t.ink; ctx.textBaseline = 'alphabetic';
+  ctx.font = fontFor("head", hs); hl.forEach(l => { ctx.fillText(l, P, y); y += hs*1.08; });
+  y += 10;
+  ctx.fillStyle = t.acc[0]; ctx.fillRect(P, y - hs*.35, 110, 10);
+  y += 40;
+  ctx.fillStyle = t.ink; ctx.font = fontFor("body", bs);
+  bl.forEach(l => { ctx.fillText(l, P, y); y += bs*1.4; });
+  y += 18;
+  ctx.font = `italic ${ss}px Georgia, serif`; ctx.fillStyle = t.ink; ctx.globalAlpha = .85;
+  sl.forEach(l => { ctx.fillText(l, P, y); y += ss*1.35; });
+  ctx.globalAlpha = 1;
+
+  // footer
+  ctx.font = "500 20px Oswald, 'Arial Narrow', sans-serif"; ctx.fillStyle = t.ink; ctx.globalAlpha = .6;
+  ctx.fillText("LATE BREAKTHROUGH BIRTHDAY CARDS · NOBODY’S BUSINESS", 62, H - 58);
+  ctx.globalAlpha = 1;
+}
+
+// ---------- wiring
+chips('gender', GENDERS, 'gender');
+chips('disc', DISCS, 'disc');
+chips('excuse', Object.entries(EXCUSES).map(([k,v]) => [k, v.label]), 'excuse');
+chips('decor', DECORS, 'decor');
+chips('font', FONTS, 'font');
+swatches();
+
+$('age').oninput = () => { S.age = +$('age').value; S.pick = 0; $('agebig').textContent = S.age; writeText(); draw(); };
+$('name').oninput = () => { S.name = $('name').value; writeText(); draw(); };
+['t-hello','t-body','t-sign'].forEach(id => $(id).oninput = draw);
+$('another').onclick = () => { S.pick++; writeText(); draw(); };
+$('shake').onclick = () => { S.seed = Math.floor(Math.random()*1e9); draw(); };
+
+$('download').onclick = () => {
+  draw();
+  cv.toBlob(b => {
+    const a = document.createElement('a');
+    a.download = `birthday-card-${S.age}.png`;
+    a.href = URL.createObjectURL(b); a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    $('note').textContent = 'Card downloaded.';
+  });
+};
+$('copy').onclick = async () => {
+  const text = `${$('t-hello').value}\n\n${$('t-body').value}\n${$('t-sign').value}\n\n— Late Breakthrough Birthday Cards\n${location.href}`;
   try { await navigator.clipboard.writeText(text); $('note').textContent = 'Copied.'; }
   catch(e){ $('note').textContent = text; }
-});
+};
 
-function wrap(ctx, text, x, y, maxW, lh){
-  const words = text.split(' '); let line = '';
-  for (const w of words){
-    const test = line ? line + ' ' + w : w;
-    if (ctx.measureText(test).width > maxW && line){ ctx.fillText(line, x, y); y += lh; line = w; }
-    else line = test;
-  }
-  if (line){ ctx.fillText(line, x, y); y += lh; }
-  return y;
+writeText(); draw();
+if (document.fonts) {
+  Promise.all([document.fonts.load('400 40px Shrikhand'), document.fonts.load('600 40px Oswald'), document.fonts.load('500 20px Oswald')])
+    .then(draw).catch(()=>{});
+  document.fonts.ready.then(draw);
 }
-
-$('download').addEventListener('click', async () => {
-  const c = compose();
-  try { await document.fonts.load('600 80px Oswald'); await document.fonts.load('500 20px Oswald'); } catch(e){}
-  const W = 1080, H = 1350, P = 96;
-  const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
-  const ctx = cv.getContext('2d');
-  ctx.fillStyle = '#f2f1ee'; ctx.fillRect(0,0,W,H);
-  ctx.fillStyle = '#7b7f83'; ctx.font = '500 22px Oswald, Arial Narrow, sans-serif';
-  ctx.fillText('THE LATE BREAKTHROUGH GALLERY', P, P + 10);
-
-  // measure body block to anchor content to the bottom area
-  ctx.font = '600 92px Oswald, Arial Narrow, sans-serif';
-  const helloLines = [];
-  { const words = c.hello.toUpperCase().split(' '); let line='';
-    for (const w of words){ const t = line ? line+' '+w : w;
-      if (ctx.measureText(t).width > W-2*P && line){ helloLines.push(line); line=w; } else line=t; }
-    if (line) helloLines.push(line); }
-  let y = 470 - (helloLines.length-1)*50;
-  ctx.fillStyle = '#2f363c';
-  helloLines.forEach(l => { ctx.fillText(l, P, y); y += 96; });
-
-  ctx.fillStyle = '#c46b80'; ctx.fillRect(P, y + 6, 90, 9); y += 86;
-
-  ctx.fillStyle = '#2f363c'; ctx.font = '42px Georgia, serif';
-  y = wrap(ctx, c.body, P, y, W-2*P, 60);
-  ctx.fillStyle = '#43323a'; ctx.font = 'italic 38px Georgia, serif';
-  wrap(ctx, c.sign, P, y + 26, W-2*P, 54);
-
-  ctx.fillStyle = '#b9c4cb'; ctx.fillRect(P, H - P - 46, W-2*P, 2);
-  ctx.fillStyle = '#7b7f83'; ctx.font = '500 22px Oswald, Arial Narrow, sans-serif';
-  ctx.fillText('NOBODY’S BUSINESS · A PODCAST', P, H - P);
-
-  const a = document.createElement('a');
-  a.download = `late-breakthrough-${$('age').value}.png`;
-  a.href = cv.toDataURL('image/png');
-  a.click();
-  $('note').textContent = 'Card downloaded.';
-});
-
-// gallery
-const groups = ["All fields","Music","Writing","Visual art","Film & theatre","Dance","Other"];
-const kinds = ["All kinds","Late start","Late peak","Still going"];
-let current = "All fields", kind = "All kinds";
-function renderFilters(){
-  $('kinds').innerHTML = kinds.map(k => `<button type="button" aria-pressed="${k===kind}">${k}</button>`).join('');
-  $('kinds').querySelectorAll('button').forEach((b,i) => b.addEventListener('click', () => { kind = kinds[i]; renderFilters(); renderRows(); }));
-  $('filters').innerHTML = groups.map(g => `<button type="button" aria-pressed="${g===current}">${g}</button>`).join('');
-  $('filters').querySelectorAll('button').forEach((b,i) => b.addEventListener('click', () => { current = groups[i]; renderFilters(); renderRows(); }));
-}
-function renderRows(){
-  $('rows').innerHTML = G.filter(x => (current==="All fields" || x.g===current) && (kind==="All kinds" || x.k===kind)).map(x =>
-    `<tr><td class="age">${x.label}</td><td class="who"><strong>${x.n}</strong><span>${x.o}</span><em class="tag">${x.k}</em></td><td class="f">${x.f}</td><td>${x.t}</td></tr>`).join('');
-}
-renderFilters(); renderRows(); compose();
 </script>
 </body>
 </html>
