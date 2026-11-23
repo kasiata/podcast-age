@@ -73,7 +73,7 @@
     .hero{padding:28px 0 22px;gap:18px}
     h1{font-size:clamp(34px,10.5vw,46px);letter-spacing:-.03em;overflow-wrap:anywhere}
     .dek{font-size:16px}
-    .pill{white-space:normal;font-size:13px;padding:9px 14px}
+    .pill{white-space:normal;font-size:13px;padding:9px 14px;justify-self:start}
     .panel{padding:18px;border-radius:18px}
     .frame{padding:10px;border-radius:18px}
     .agebig{font-size:42px;min-width:70px}
@@ -93,7 +93,7 @@
       <h1>Late breakthrough <em>birthday</em> cards</h1>
       <p class="dek">For anyone who thinks it’s too late. Pick an age, and find out who did their best work after it.</p>
     </div>
-    <div class="pill"><i></i>111 artists who started, peaked or kept going after 45</div>
+    <div class="pill"><i></i><span id="count">125</span> artists who hit their stride after 40</div>
   </section>
 
   <div class="maker">
@@ -101,7 +101,7 @@
       <div class="sec"><span>1</span>Who is it for?</div>
       <div class="group">
         <span class="lab">Age</span>
-        <div class="agewrap"><div class="agebig" id="agebig">60</div><input type="range" id="age" min="45" max="105" value="60" aria-label="Age"></div>
+        <div class="agewrap"><div class="agebig" id="agebig">60</div><input type="range" id="age" min="40" max="100" value="60" aria-label="Age"></div>
       </div>
       <div class="group"><span class="lab">Match them with</span><div class="chips" id="gender"></div></div>
       <div class="group"><span class="lab">Creative discipline</span><div class="chips" id="disc"></div></div>
@@ -143,6 +143,7 @@
 // [age, name, gender (w/m), discipline (music/words/art/stage), sentence that follows "At {age}, "]
 const G = [
  // ---------- music
+ [55,"Sixto Rodriguez","m","music","Sixto Rodriguez found out he had been a star in South Africa for 25 years, and flew there to play sold-out concerts."],
  [45,"Tina Turner","w","music","Tina Turner swept the Grammys with her comeback album, Private Dancer."],
  [46,"Sharon Jones","w","music","Sharon Jones released her first album, after years as a prison guard and wedding singer."],
  [50,"Jean-Philippe Rameau","m","music","Jean-Philippe Rameau premiered his first opera. All his major stage works came after."],
@@ -171,6 +172,12 @@ const G = [
  [92,"György Kurtág","m","music","György Kurtág premiered his first opera, at La Scala."],
  [103,"Elliott Carter","m","music","Elliott Carter was still composing."],
  // ---------- words
+ [49,"Bram Stoker","m","words","Bram Stoker, a theatre manager, published Dracula."],
+ [49,"Kenneth Grahame","m","words","Kenneth Grahame, a banker, published The Wind in the Willows."],
+ [49,"Julia Child","w","words","Julia Child published Mastering the Art of French Cooking, after years of testing every recipe."],
+ [57,"Hilary Mantel","w","words","Hilary Mantel won the Booker Prize for Wolf Hall, after twenty years of modest sales."],
+ [63,"Rosamunde Pilcher","w","words","Rosamunde Pilcher published The Shell Seekers, her first bestseller."],
+ [82,"Annie Ernaux","w","words","Annie Ernaux won the Nobel Prize."],
  [50,"Raymond Chandler","m","words","Raymond Chandler published his first novel, The Big Sleep."],
  [52,"Richard Adams","m","words","Richard Adams, a civil servant, published Watership Down."],
  [52,"Andrea Camilleri","m","words","Andrea Camilleri published his first novel at his own expense. Inspector Montalbano arrived at 68."],
@@ -204,6 +211,11 @@ const G = [
  [95,"Stanley Kunitz","m","words","Stanley Kunitz became US Poet Laureate."],
  [96,"Harry Bernstein","m","words","Harry Bernstein published his first book."],
  // ---------- art & design
+ [41,"Henri Rousseau","m","art","Henri Rousseau, a customs officer, exhibited his paintings for the first time."],
+ [43,"Paul Gauguin","m","art","Paul Gauguin, a former stockbroker, sailed to Tahiti and painted his best-known work."],
+ [48,"Niki de Saint Phalle","w","art","Niki de Saint Phalle began her Tarot Garden, a sculpture park she worked on for twenty years."],
+ [53,"Faith Ringgold","w","art","Faith Ringgold made her first story quilt."],
+ [56,"Paul Cézanne","m","art","Paul Cézanne had his first solo show."],
  [59,"Louise Nevelson","w","art","Louise Nevelson had her breakthrough at MoMA with her black wall sculptures."],
  [56,"Rembrandt","m","art","Rembrandt painted The Syndics. The Jewish Bride and the great late self-portraits were still to come."],
  [63,"Marina Abramović","w","art","Marina Abramović sat silently at MoMA for three months, and three-quarters of a million people came."],
@@ -237,6 +249,9 @@ const G = [
  [98,"Vera Molnár","w","art","Vera Molnár was chosen for the main exhibition of the Venice Biennale."],
  [100,"Oscar Niemeyer","m","art","Oscar Niemeyer was still designing buildings. He kept going until 104."],
  // ---------- stage, screen & dance
+ [45,"Robert Altman","m","stage","Robert Altman, after years of TV work, made M*A*S*H and won the Palme d’Or."],
+ [48,"Lina Wertmüller","w","stage","Lina Wertmüller became the first woman nominated for the Oscar for Best Director."],
+ [58,"Kathryn Bigelow","w","stage","Kathryn Bigelow became the first woman to win the Oscar for Best Director."],
  [52,"Christoph Waltz","m","stage","Christoph Waltz, after decades of Austrian and German TV, became an international star. The Oscar followed a year later."],
  [75,"Akira Kurosawa","m","stage","Akira Kurosawa made Ran, his epic King Lear."],
  [56,"Olympia Dukakis","w","stage","Olympia Dukakis won an Oscar, for Moonstruck."],
@@ -302,14 +317,18 @@ function swatches(){
 }
 
 function choose(){
-  let pool = G.filter(x => (S.gender==="any" || x.g===S.gender) && (S.disc==="any" || x.d===S.disc));
-  if (!pool.length) pool = G;
-  const above = pool.filter(x => x.a >= S.age);
-  if (above.length){
-    const first = above[0].a;
-    const win = above.filter(x => x.a <= first + 4);
-    return {e: win[S.pick % win.length], past:false};
+  const inWin = x => x.a >= S.age + 3 && x.a <= S.age + 6;
+  const byG = x => S.gender==="any" || x.g===S.gender;
+  const byD = x => S.disc==="any" || x.d===S.disc;
+  // 1) exact filters, 3–6 years ahead; 2) same gender, any field; 3) same field, anyone; 4) anyone
+  const tiers = [G.filter(x => byG(x) && byD(x)), G.filter(byG), G.filter(byD), G];
+  for (const pool of tiers){
+    const win = pool.filter(inWin);
+    if (win.length) return {e: win[S.pick % win.length], past:false};
   }
+  const pool = tiers[0].length ? tiers[0] : G;
+  const ahead = pool.filter(x => x.a > S.age);
+  if (ahead.length){ const first = ahead[0].a; const w = ahead.filter(x => x.a <= first + 3); return {e: w[S.pick % w.length], past:false}; }
   const older = pool.slice().reverse();
   return {e: older[S.pick % Math.min(3, older.length)], past:true};
 }
@@ -321,7 +340,7 @@ function writeText(){
   let body = `At ${e.a}, ${e.c}`;
   const gap = e.a - S.age;
   if (past) body += ` You’re already past that. Show them how it’s done.`;
-  else if (gap > 0) body += ` That gives you ${gap} more year${gap>1?'s':''}.`;
+  else if (gap > 0) body += ` That’s you in ${gap} year${gap>1?'s':''}.`;
   const lines = EXCUSES[S.excuse].lines;
   $('t-hello').value = hello; $('t-body').value = body; $('t-sign').value = lines[S.pick % lines.length];
 }
@@ -497,6 +516,7 @@ $('copy').onclick = async () => {
   catch(e){ $('note').textContent = text; }
 };
 
+$('count').textContent = G.length;
 writeText(); draw();
 if (document.fonts){
   Promise.all([
