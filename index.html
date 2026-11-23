@@ -7,143 +7,119 @@
 <meta name="description" content="A birthday card generator for anyone who thinks it's too late. Pick an age and find out who did their best work after it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Shrikhand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#2f363c; --dim:#6b6f74; --paper:#fffaf3; --line:#eadfd3;
-    --pink:#ff4f79; --sun:#ffb800; --teal:#2ec4b6; --violet:#5e60ce;
-    --cond:'Oswald','Arial Narrow',Impact,sans-serif;
-    --party:'Shrikhand',Georgia,serif;
-    --serif:Georgia,'Times New Roman',serif;
+    --bg:#f5f3ef; --card:#ffffff; --ink:#15151a; --dim:#6e6c72; --line:#e6e2dc; --soft:#efece6;
+    --accent:#ff5c39; --accent2:#5b3cff;
+    --display:'Bricolage Grotesque',system-ui,sans-serif;
+    --serif:'Instrument Serif',Georgia,serif;
+    --ui:'Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--paper);color:var(--ink);font:17px/1.5 var(--serif);-webkit-font-smoothing:antialiased;
-    background-image:radial-gradient(circle at 8% 6%, #ffd6e0 0 90px, transparent 91px),radial-gradient(circle at 96% 3%, #fff0b3 0 120px, transparent 121px),radial-gradient(circle at 92% 70%, #c7f9cc 0 70px, transparent 71px);
-    background-attachment:fixed}
-  .page{max-width:1120px;margin:0 auto;padding:24px 22px 70px}
+  body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--ui);-webkit-font-smoothing:antialiased}
+  .page{max-width:1180px;margin:0 auto;padding:22px 24px 64px}
 
-  .mast{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:8px}
-  .brand{font:600 20px/1 var(--cond);letter-spacing:.06em;text-transform:uppercase}
-  .brand .ap{color:#c46b80}
-  .issue{font:500 12px/1 var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--dim)}
+  .top b{color:var(--ink);font-weight:600;letter-spacing:.01em}
+  .top b span{color:#c46b80}
 
-  .hero{padding:34px 0 24px;display:flex;justify-content:space-between;gap:24px;align-items:end;flex-wrap:wrap}
-  h1{font:400 clamp(44px,7vw,80px)/.95 var(--party);letter-spacing:.005em}
-  h1 .c1{color:var(--pink)} h1 .c2{color:var(--violet)} h1 .c3{color:var(--teal)}
-  .dek{font-style:italic;font-size:clamp(18px,2.2vw,21px);max-width:34ch;margin-top:14px}
-  .badge{width:130px;height:130px;border-radius:50%;background:var(--sun);color:var(--ink);display:flex;align-items:center;justify-content:center;text-align:center;
-    font:400 19px/1.05 var(--party);transform:rotate(10deg);flex:none;box-shadow:0 0 0 6px var(--paper),0 0 0 8px var(--sun)}
+  .hero{padding:46px 0 34px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+  @media (max-width:760px){.hero{grid-template-columns:1fr}}
+  h1{font:800 clamp(46px,7.6vw,104px)/.9 var(--display);letter-spacing:-.035em}
+  h1 em{font:italic 400 1.02em/1 var(--serif);letter-spacing:-.01em;color:var(--accent)}
+  .dek{font-size:18px;color:var(--dim);max-width:44ch;margin-top:18px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:10px 16px;font-weight:500;font-size:14px;white-space:nowrap}
+  .pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
 
-  .maker{display:grid;grid-template-columns:minmax(300px,1fr) minmax(320px,1.15fr);gap:34px;align-items:start}
-  @media (max-width:860px){.maker{grid-template-columns:1fr}}
+  .maker{display:grid;grid-template-columns:minmax(320px,.95fr) minmax(320px,1.1fr);gap:28px;align-items:start}
+  @media (max-width:900px){.maker{grid-template-columns:1fr}}
 
-  .panel{background:#fff;border:2px solid var(--ink);border-radius:18px;padding:22px 22px 18px;box-shadow:6px 6px 0 var(--ink)}
-  .step{font:600 13px/1 var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin:4px 0 12px}
-  .step.s2{color:var(--violet)} .step.s3{color:var(--teal)}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px}
+  .sec{font:600 12px/1 var(--ui);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .sec span{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:0}
   .group{margin-bottom:18px}
-  .lab{display:block;font:500 13px/1 var(--cond);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-  .chips{display:flex;flex-wrap:wrap;gap:7px}
-  .chips button{font:500 14px/1 var(--cond);letter-spacing:.06em;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:8px 13px;cursor:pointer;transition:transform .1s}
-  .chips button:hover{transform:translateY(-1px)}
+  .lab{display:block;font-size:13px;font-weight:500;margin-bottom:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips button{font:500 14px/1 var(--ui);background:var(--soft);color:var(--ink);border:1px solid transparent;border-radius:999px;padding:9px 14px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+  .chips button:hover{border-color:var(--ink)}
   .chips button[aria-pressed="true"]{background:var(--ink);color:#fff}
-  .agewrap{display:flex;align-items:center;gap:14px}
-  .agebig{font:400 44px/1 var(--party);color:var(--pink);min-width:84px}
-  input[type=range]{flex:1;accent-color:var(--pink)}
-  input[type=text],textarea{width:100%;font:17px/1.35 var(--serif);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:10px;padding:9px 11px}
+  .agewrap{display:flex;align-items:center;gap:16px}
+  .agebig{font:800 52px/1 var(--display);letter-spacing:-.04em;min-width:86px}
+  input[type=range]{flex:1;accent-color:var(--ink)}
+  input[type=text],textarea{width:100%;font:15px/1.45 var(--ui);color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:12px;padding:11px 13px;outline:none;transition:border-color .15s,background .15s}
+  input[type=text]:focus,textarea:focus{background:#fff;border-color:var(--ink)}
   textarea{resize:vertical;min-height:44px}
   .swatches{display:flex;gap:10px;flex-wrap:wrap}
-  .swatches button{width:44px;height:44px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--ink);cursor:pointer;position:relative;overflow:hidden}
-  .swatches button[aria-pressed="true"]{box-shadow:0 0 0 2px var(--ink),0 0 0 6px var(--sun)}
-  .swatches button span{position:absolute;inset:auto 0 0 0;height:40%}
-  hr{border:0;border-top:2px dashed var(--line);margin:18px 0}
+  .swatches button{width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;position:relative;overflow:hidden;outline:1px solid var(--line);outline-offset:0;transition:outline-offset .15s}
+  .swatches button[aria-pressed="true"]{outline:2px solid var(--ink);outline-offset:3px}
+  .swatches button span{position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%}
+  .divider{height:1px;background:var(--line);margin:22px 0}
 
-  .preview{position:sticky;top:16px}
-  #cv{width:100%;height:auto;display:block;border-radius:16px;box-shadow:0 22px 50px -24px rgba(47,54,60,.55);background:#eee}
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-  .btn{font:600 15px/1 var(--cond);letter-spacing:.12em;text-transform:uppercase;border:2px solid var(--ink);border-radius:999px;padding:13px 18px;cursor:pointer;background:var(--pink);color:#fff;box-shadow:3px 3px 0 var(--ink)}
-  .btn.alt{background:var(--sun);color:var(--ink)} .btn.ghost{background:#fff;color:var(--ink)}
-  .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
-  .note{font-size:14px;color:var(--dim);margin-top:10px;min-height:1.3em}
+  .preview{position:sticky;top:18px}
+  .frame{background:var(--soft);border-radius:28px;padding:22px}
+  #cv{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 30px 60px -30px rgba(21,21,26,.45)}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .btn{font:500 14px/1 var(--ui);border-radius:999px;padding:13px 18px;cursor:pointer;border:1px solid var(--ink);background:#fff;color:var(--ink);transition:transform .1s}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn:active{transform:scale(.97)}
+  .note{font-size:13px;color:var(--dim);margin-top:10px;min-height:1.3em}
 
-  footer{margin-top:54px;border-top:2px solid var(--ink);padding-top:14px;font-size:14px;color:var(--dim);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--dim);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
 <div class="page">
 
-  <header class="mast">
-    <div class="brand">Nobody<span class="ap">’</span>s Business</div>
-    <div class="issue">Freebie · Age</div>
-  </header>
+  <div class="top"><b>Nobody<span>’</span>s Business</b><span>Freebie · Age</span></div>
 
   <section class="hero">
     <div>
-      <h1><span class="c1">Late</span> <span class="c2">Breakthrough</span><br><span class="c3">Birthday Cards</span></h1>
-      <p class="dek">For anyone who thinks it’s too late. Pick an age and find out who did their best work after it.</p>
+      <h1>Late breakthrough <em>birthday</em> cards</h1>
+      <p class="dek">For anyone who thinks it’s too late. Pick an age, and find out who did their best work after it.</p>
     </div>
-    <div class="badge">No<br>pressure!</div>
+    <div class="pill"><i></i>111 artists who started, peaked or kept going after 45</div>
   </section>
 
   <div class="maker">
     <div class="panel">
-      <div class="step">1 · Who is it for?</div>
+      <div class="sec"><span>1</span>Who is it for?</div>
       <div class="group">
         <span class="lab">Age</span>
         <div class="agewrap"><div class="agebig" id="agebig">60</div><input type="range" id="age" min="45" max="105" value="60" aria-label="Age"></div>
       </div>
-      <div class="group">
-        <span class="lab">Match them with</span>
-        <div class="chips" id="gender"></div>
-      </div>
-      <div class="group">
-        <span class="lab">Creative discipline</span>
-        <div class="chips" id="disc"></div>
-      </div>
-      <div class="group">
-        <span class="lab">Their favourite excuse</span>
-        <div class="chips" id="excuse"></div>
-      </div>
-      <div class="group">
-        <span class="lab" for="name">Name (optional)</span>
-        <input type="text" id="name" maxlength="24" placeholder="e.g. Marta">
-      </div>
+      <div class="group"><span class="lab">Match them with</span><div class="chips" id="gender"></div></div>
+      <div class="group"><span class="lab">Creative discipline</span><div class="chips" id="disc"></div></div>
+      <div class="group"><span class="lab">Their favourite excuse</span><div class="chips" id="excuse"></div></div>
+      <div class="group"><span class="lab">Name (optional)</span><input type="text" id="name" maxlength="24" placeholder="e.g. Marta"></div>
 
-      <hr>
-      <div class="step s2">2 · Make it pretty</div>
-      <div class="group">
-        <span class="lab">Colours</span>
-        <div class="swatches" id="themes"></div>
-      </div>
-      <div class="group">
-        <span class="lab">Decoration</span>
-        <div class="chips" id="decor"></div>
-      </div>
-      <div class="group">
-        <span class="lab">Lettering</span>
-        <div class="chips" id="font"></div>
-      </div>
+      <div class="divider"></div>
+      <div class="sec"><span>2</span>Style</div>
+      <div class="group"><span class="lab">Colours</span><div class="swatches" id="themes"></div></div>
+      <div class="group"><span class="lab">Graphic</span><div class="chips" id="decor"></div></div>
+      <div class="group"><span class="lab">Type</span><div class="chips" id="font"></div></div>
 
-      <hr>
-      <div class="step s3">3 · Tweak the words</div>
+      <div class="divider"></div>
+      <div class="sec"><span>3</span>Words</div>
       <div class="group"><span class="lab">Headline</span><textarea id="t-hello" rows="1"></textarea></div>
       <div class="group"><span class="lab">Message</span><textarea id="t-body" rows="3"></textarea></div>
       <div class="group"><span class="lab">Sign-off</span><textarea id="t-sign" rows="1"></textarea></div>
     </div>
 
     <div class="preview">
-      <canvas id="cv" width="1080" height="1350" aria-label="Birthday card preview"></canvas>
+      <div class="frame"><canvas id="cv" width="1080" height="1350" aria-label="Birthday card preview"></canvas></div>
       <div class="actions">
+        <button class="btn primary" id="download">Download card</button>
         <button class="btn" id="another">Another artist</button>
-        <button class="btn alt" id="shake">Shake the confetti</button>
-        <button class="btn ghost" id="download">Download card</button>
-        <button class="btn ghost" id="copy">Copy text</button>
+        <button class="btn" id="shake">Remix graphic</button>
+        <button class="btn" id="copy">Copy text</button>
       </div>
       <p class="note" id="note"></p>
     </div>
   </div>
 
   <footer>
-    <span>A freebie from <em>Nobody’s Business</em> — a podcast on the hidden economics of artistic life.</span>
+    <span>A freebie from <em>Nobody’s Business</em>, a podcast on the hidden economics of artistic life.</span>
     <span>Nothing you type here is stored.</span>
   </footer>
 </div>
@@ -243,7 +219,7 @@ const G = [
  [89,"Carmen Herrera","w","art","Carmen Herrera sold her first painting. Her Whitney retrospective came at 101."],
  [93,"Maria Lassnig","w","art","Maria Lassnig won the Golden Lion in Venice, after decades of being overlooked."],
  [97,"Luchita Hurtado","w","art","Luchita Hurtado got her first real recognition, after 80 years of painting."],
- [98,"Vera Molnár","w","art","Vera Molnár showed at the Venice Biennale."],
+ [98,"Vera Molnár","w","art","Vera Molnár was chosen for the main exhibition of the Venice Biennale."],
  [100,"Oscar Niemeyer","m","art","Oscar Niemeyer was still designing buildings. He kept going until 104."],
  // ---------- stage, screen & dance
  [52,"Christoph Waltz","m","stage","Christoph Waltz, after decades of Austrian and German TV, became an international star. The Oscar followed a year later."],
@@ -278,41 +254,42 @@ const EXCUSES = {
   asked: {label:"“Nobody asked me”", lines:["Nobody asked them either.","Consider yourself asked.","Don’t wait for the invitation."]},
   fine:  {label:"“I’m fine, thanks”", lines:["Of course you are. Happy birthday.","Fine is a lovely place to start from.","We believe you. Mostly."]}
 };
+// bg, ink, a1 (main accent), a2, a3
 const THEMES = [
-  {id:"pink", bg:"#ffd6e0", ink:"#3a1f2b", acc:["#ff4f79","#ffb800","#2ec4b6","#5e60ce"]},
-  {id:"sun", bg:"#ffe66d", ink:"#2b2d42", acc:["#ff6b6b","#4ecdc4","#1a535c","#ffffff"]},
-  {id:"mint", bg:"#c7f9cc", ink:"#22333b", acc:["#ff5d8f","#5e60ce","#ffb703","#ffffff"]},
-  {id:"sky", bg:"#cde7ff", ink:"#1b2a49", acc:["#ff7a59","#ffd23f","#3a86ff","#ffffff"]},
-  {id:"night", bg:"#1d1a4f", ink:"#fff3e0", acc:["#ff7ab6","#ffd166","#06d6a0","#8ecae6"]},
-  {id:"brand", bg:"#e3e2df", ink:"#2f363c", acc:["#c46b80","#43323a","#b9c4cb","#7b7f83"]}
+  {id:"tomato", bg:"#ffe3d6", ink:"#1e1714", a:["#ff5c39","#ffb59c","#2d1e2f"]},
+  {id:"electric", bg:"#2f2bff", ink:"#ffffff", a:["#ff9de2","#d6ff4f","#0e0b5c"]},
+  {id:"lime", bg:"#dcff57", ink:"#121212", a:["#ff5ca8","#2f2bff","#ffffff"]},
+  {id:"lilac", bg:"#ddd0ff", ink:"#1a1433", a:["#ff6b3d","#5b3cff","#fff7e6"]},
+  {id:"ink", bg:"#121214", ink:"#f5f1ea", a:["#ff4f79","#ffd23f","#7cf2d0"]},
+  {id:"mist", bg:"#e3e2df", ink:"#2f363c", a:["#c46b80","#43323a","#b9c4cb"]}
 ];
-const DECORS = [["confetti","Confetti"],["balloons","Balloons"],["candles","Candles"],["bunting","Bunting"],["all","Everything!"]];
-const FONTS = [["party","Party"],["bold","Bold"],["classic","Classic"]];
+const DECORS = [["number","Big number"],["shapes","Shapes"],["glow","Glow"],["confetti","Confetti"],["candles","Candles"]];
+const FONTS = [["grotesk","Grotesk"],["serif","Serif"],["mix","Mix"]];
 
-const S = {age:60, gender:"any", disc:"any", excuse:"none", name:"", theme:"pink", decor:"confetti", font:"party", pick:0, seed:7};
+const S = {age:60, gender:"any", disc:"any", excuse:"none", name:"", theme:"tomato", decor:"number", font:"mix", pick:0, seed:7};
 const $ = id => document.getElementById(id);
 const ord = n => { const s=["th","st","nd","rd"], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); };
 
 function chips(el, items, key){
   $(el).innerHTML = items.map(([v,l]) => `<button type="button" data-v="${v}" aria-pressed="${S[key]===v}">${l}</button>`).join('');
   $(el).querySelectorAll('button').forEach(b => b.onclick = () => {
-    S[key] = b.dataset.v; S.pick = 0;
+    S[key] = b.dataset.v; if (["gender","disc","excuse"].includes(key)) S.pick = 0;
     $(el).querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x===b));
-    if (["gender","disc","excuse"].includes(key)) writeText(); draw();
+    if (["gender","disc","excuse"].includes(key)) writeText();
+    draw();
   });
 }
 function swatches(){
-  $('themes').innerHTML = THEMES.map(t => `<button type="button" data-v="${t.id}" aria-label="${t.id} colours" aria-pressed="${S.theme===t.id}" style="background:${t.bg}"><span style="background:${t.acc[0]}"></span></button>`).join('');
+  $('themes').innerHTML = THEMES.map(t => `<button type="button" data-v="${t.id}" aria-label="${t.id} colours" aria-pressed="${S.theme===t.id}" style="background:${t.bg}"><span style="background:${t.a[0]}"></span></button>`).join('');
   $('themes').querySelectorAll('button').forEach(b => b.onclick = () => {
     S.theme = b.dataset.v; $('themes').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x===b)); draw();
   });
 }
 
 function choose(){
-  const age = S.age;
   let pool = G.filter(x => (S.gender==="any" || x.g===S.gender) && (S.disc==="any" || x.d===S.disc));
   if (!pool.length) pool = G;
-  const above = pool.filter(x => x.a >= age);
+  const above = pool.filter(x => x.a >= S.age);
   if (above.length){
     const first = above[0].a;
     const win = above.filter(x => x.a <= first + 4);
@@ -331,82 +308,91 @@ function writeText(){
   if (past) body += ` You’re already past that. Show them how it’s done.`;
   else if (gap > 0) body += ` That gives you ${gap} more year${gap>1?'s':''}.`;
   const lines = EXCUSES[S.excuse].lines;
-  const sign = lines[S.pick % lines.length];
-  $('t-hello').value = hello; $('t-body').value = body; $('t-sign').value = sign;
+  $('t-hello').value = hello; $('t-body').value = body; $('t-sign').value = lines[S.pick % lines.length];
 }
 
 // ---------- drawing
-const cv = $('cv'), ctx = cv.getContext('2d'), W = 1080, H = 1350;
+const cv = $('cv'), ctx = cv.getContext('2d'), W = 1080, H = 1350, P = 96;
 function rng(seed){ let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
 
-function confetti(t, r, zones, n){
-  for (let i=0;i<n;i++){
+function gBigNumber(t, r){
+  const txt = String(S.age);
+  ctx.save();
+  ctx.font = `800 ${txt.length > 2 ? 560 : 720}px 'Bricolage Grotesque', system-ui, sans-serif`;
+  ctx.fillStyle = t.a[0];
+  const w = ctx.measureText(txt).width;
+  const x = W - w + 40 - r()*80;
+  ctx.globalAlpha = .95;
+  ctx.fillText(txt, x, H + 90);
+  ctx.restore();
+}
+function gShapes(t, r){
+  ctx.save();
+  // big circle top right
+  ctx.fillStyle = t.a[0]; ctx.beginPath(); ctx.arc(W - 120 - r()*80, 210 + r()*40, 190, 0, Math.PI*2); ctx.fill();
+  // half circle bottom left
+  ctx.fillStyle = t.a[1]; ctx.beginPath(); ctx.arc(150 + r()*80, H, 230, Math.PI, 0); ctx.fill();
+  // quarter arc bottom right
+  ctx.fillStyle = t.a[2]; ctx.beginPath(); ctx.moveTo(W, H); ctx.arc(W, H, 210, Math.PI, Math.PI*1.5); ctx.closePath(); ctx.fill();
+  // small dot + line
+  ctx.fillStyle = t.ink; ctx.beginPath(); ctx.arc(140, 240, 16, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = t.ink; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(P, 300); ctx.lineTo(P + 160, 300); ctx.stroke();
+  ctx.restore();
+}
+function gGlow(t, r){
+  ctx.save();
+  const blobs = [[t.a[0], W*.8, 250, 420],[t.a[1], W*.15, H*.82, 460],[t.a[2], W*.9, H*.95, 300]];
+  blobs.forEach(([c, x, y, rad]) => {
+    x += (r()-.5)*160; y += (r()-.5)*120;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+    g.addColorStop(0, c); g.addColorStop(1, c + "00");
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  });
+  // fine grain
+  for (let i=0;i<9000;i++){ ctx.fillStyle = r() < .5 ? 'rgba(255,255,255,.06)' : 'rgba(0,0,0,.05)'; ctx.fillRect(r()*W, r()*H, 2, 2); }
+  ctx.restore();
+}
+function gConfetti(t, r){
+  ctx.save();
+  const zones = [[P, 120, W-60, 330],[W-180, 330, W-60, H-180],[P, H-200, W-60, H-120]];
+  for (let i=0;i<90;i++){
     const z = zones[Math.floor(r()*zones.length)];
     const x = z[0] + r()*(z[2]-z[0]), y = z[1] + r()*(z[3]-z[1]);
+    ctx.fillStyle = t.a[Math.floor(r()*3)];
     ctx.save(); ctx.translate(x,y); ctx.rotate(r()*Math.PI);
-    ctx.fillStyle = t.acc[Math.floor(r()*t.acc.length)];
     const k = r();
-    if (k < .45) ctx.fillRect(-9,-4,18,8);
-    else if (k < .8){ ctx.beginPath(); ctx.arc(0,0,6+r()*4,0,Math.PI*2); ctx.fill(); }
-    else { ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(8,7); ctx.lineTo(-8,7); ctx.closePath(); ctx.fill(); }
+    if (k < .5){ ctx.beginPath(); ctx.arc(0,0,5+r()*6,0,Math.PI*2); ctx.fill(); }
+    else { ctx.fillRect(-14,-3,28,6); }
     ctx.restore();
   }
+  ctx.restore();
 }
-function balloons(t, r){
-  const spots = [[820,190],[930,250],[720,270],[180,210]];
-  const n = 3 + Math.floor(r()*2);
+function gCandles(t){
+  ctx.save();
+  const n = Math.max(1, Math.min(11, Math.round(S.age/10)));
+  const gap = 56, total = (n-1)*gap, x0 = W - P - total, base = H - 130;
   for (let i=0;i<n;i++){
-    const [bx,by] = spots[i];
-    const x = bx + (r()-.5)*30, y = by + (r()-.5)*30;
-    ctx.strokeStyle = t.ink; ctx.globalAlpha = .45; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(x, y+78); ctx.bezierCurveTo(x-20, y+140, x+20, y+180, x-5, y+240); ctx.stroke();
-    ctx.globalAlpha = 1;
-    ctx.fillStyle = t.acc[i % t.acc.length];
-    ctx.beginPath(); ctx.ellipse(x, y, 58, 74, 0, 0, Math.PI*2); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(x-9,y+80); ctx.lineTo(x+9,y+80); ctx.lineTo(x,y+70); ctx.fill();
-    ctx.fillStyle = 'rgba(255,255,255,.45)';
-    ctx.beginPath(); ctx.ellipse(x-20, y-26, 12, 20, -.4, 0, Math.PI*2); ctx.fill();
+    const x = x0 + i*gap, h = 150 + (i%3)*24;
+    ctx.fillStyle = t.a[i % 2 ? 1 : 0];
+    ctx.beginPath(); ctx.roundRect(x-9, base-h, 18, h, 9); ctx.fill();
+    ctx.fillStyle = t.a[2] === t.bg ? t.ink : t.a[2];
+    ctx.beginPath(); ctx.ellipse(x, base-h-26, 9, 16, 0, 0, Math.PI*2); ctx.fill();
   }
-}
-function bunting(t){
-  const y0 = 70, sag = 60;
-  ctx.strokeStyle = t.ink; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.moveTo(-10,y0); ctx.quadraticCurveTo(W/2, y0+sag*2, W+10, y0); ctx.stroke();
-  const n = 11;
-  for (let i=0;i<n;i++){
-    const u = (i+.5)/n, x = -10 + u*(W+20);
-    const y = (1-u)*(1-u)*y0 + 2*(1-u)*u*(y0+sag*2) + u*u*y0;
-    ctx.fillStyle = t.acc[i % t.acc.length];
-    ctx.beginPath(); ctx.moveTo(x-38,y); ctx.lineTo(x+38,y); ctx.lineTo(x,y+78); ctx.closePath(); ctx.fill();
-  }
-}
-function candles(t, count){
-  const n = Math.max(1, Math.min(11, count));
-  const gap = 74, total = (n-1)*gap, x0 = W/2 - total/2, base = H - 150;
-  ctx.fillStyle = t.ink; ctx.globalAlpha = .12; ctx.fillRect(110, base, W-220, 16); ctx.globalAlpha = 1;
-  for (let i=0;i<n;i++){
-    const x = x0 + i*gap, h = 92;
-    ctx.fillStyle = t.acc[i % t.acc.length]; ctx.fillRect(x-12, base-h, 24, h);
-    ctx.fillStyle = 'rgba(255,255,255,.55)';
-    for (let s=0;s<4;s++) ctx.fillRect(x-12, base-h+10+s*22, 24, 6);
-    ctx.strokeStyle = t.ink; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, base-h); ctx.lineTo(x, base-h-12); ctx.stroke();
-    ctx.fillStyle = '#ffb703'; ctx.beginPath(); ctx.ellipse(x, base-h-30, 11, 20, 0, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#fff3b0'; ctx.beginPath(); ctx.ellipse(x, base-h-25, 5, 10, 0, 0, Math.PI*2); ctx.fill();
-  }
+  ctx.restore();
 }
 
-function fontFor(kind, size){
-  if (S.font === "party") return kind==="head" ? `400 ${size}px Shrikhand, Georgia, serif` : `${size}px Georgia, serif`;
-  if (S.font === "bold") return kind==="head" ? `600 ${size}px Oswald, 'Arial Narrow', sans-serif` : `${size}px Georgia, serif`;
-  return kind==="head" ? `italic ${size}px Georgia, serif` : `${size}px Georgia, serif`;
+function fontSet(){
+  if (S.font === "serif") return {head:(s)=>`400 ${s}px 'Instrument Serif', Georgia, serif`, body:(s)=>`400 ${s}px 'Instrument Serif', Georgia, serif`, sign:(s)=>`italic 400 ${s}px 'Instrument Serif', Georgia, serif`, hs:130, bs:50, ss:46};
+  if (S.font === "grotesk") return {head:(s)=>`800 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, body:(s)=>`400 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, sign:(s)=>`600 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, hs:104, bs:40, ss:36};
+  return {head:(s)=>`800 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, body:(s)=>`400 ${s}px 'Bricolage Grotesque', system-ui, sans-serif`, sign:(s)=>`italic 400 ${s}px 'Instrument Serif', Georgia, serif`, hs:104, bs:40, ss:48};
 }
-function lines(text, maxW){
+function wrapLines(text, maxW){
   const out = [];
   text.split('\n').forEach(par => {
     let line = '';
     par.split(' ').forEach(w => {
-      const t = line ? line + ' ' + w : w;
-      if (ctx.measureText(t).width > maxW && line){ out.push(line); line = w; } else line = t;
+      const tt = line ? line + ' ' + w : w;
+      if (ctx.measureText(tt).width > maxW && line){ out.push(line); line = w; } else line = tt;
     });
     out.push(line);
   });
@@ -416,50 +402,54 @@ function lines(text, maxW){
 function draw(){
   const t = THEMES.find(x => x.id===S.theme);
   const r = rng(S.seed);
-  const d = S.decor, all = d==="all";
   ctx.clearRect(0,0,W,H);
   ctx.fillStyle = t.bg; ctx.fillRect(0,0,W,H);
 
-  // inner frame
-  ctx.strokeStyle = t.ink; ctx.globalAlpha = .18; ctx.lineWidth = 3;
-  ctx.strokeRect(36,36,W-72,H-72); ctx.globalAlpha = 1;
+  const d = S.decor;
+  if (d==="number") gBigNumber(t, r);
+  if (d==="shapes") gShapes(t, r);
+  if (d==="glow") gGlow(t, r);
+  if (d==="confetti") gConfetti(t, r);
+  if (d==="candles") gCandles(t);
 
-  if (d==="bunting" || all) bunting(t);
-  if (d==="balloons" || all) balloons(t, r);
-  if (d==="confetti" || all) confetti(t, r, [[40,40,W-40,330],[40,330,120,H-40],[W-120,330,W-40,H-40],[40,H-120,W-40,H-40]], all ? 70 : 150);
-  if (d==="candles" || all) candles(t, Math.round(S.age/10));
+  // top label
+  ctx.fillStyle = t.ink; ctx.font = "600 22px Inter, system-ui, sans-serif";
+  ctx.fillText("Late Breakthrough", P, 120);
+  ctx.globalAlpha = .55; ctx.fillText("Birthday Card", P, 150); ctx.globalAlpha = 1;
 
-  const P = 110, maxW = W - 2*P;
-  const top = 370, bottom = (d==="candles"||all) ? H - 300 : H - 170;
-
+  const f = fontSet();
+  const maxW = (d==="candles") ? W - 2*P - 40 : W - 2*P;
+  const top = (d==="shapes") ? 360 : 300;
+  const bottom = (d==="candles") ? H - 380 : (d==="number" ? H - 420 : H - 200);
   const hello = $('t-hello').value, body = $('t-body').value, sign = $('t-sign').value;
-  // fit text by shrinking
-  let hs = S.font==="party" ? 96 : 104, bs = 40, ss = 36, hl, bl, sl, total;
-  for (let tries=0; tries<30; tries++){
-    ctx.font = fontFor("head", hs); hl = lines(hello, maxW);
-    ctx.font = fontFor("body", bs); bl = lines(body, maxW);
-    ctx.font = `italic ${ss}px Georgia, serif`; sl = lines(sign, maxW);
-    total = hl.length*hs*1.08 + 50 + bl.length*bs*1.4 + 30 + sl.length*ss*1.35;
+
+  let hs = f.hs, bs = f.bs, ss = f.ss, hl, bl, sl, total;
+  for (let k=0;k<30;k++){
+    ctx.font = f.head(hs); hl = wrapLines(hello, maxW);
+    ctx.font = f.body(bs); bl = wrapLines(body, maxW);
+    ctx.font = f.sign(ss); sl = wrapLines(sign, maxW);
+    total = hl.length*hs*.98 + 44 + bl.length*bs*1.32 + 26 + sl.length*ss*1.25;
     if (total <= bottom - top) break;
     hs *= .94; bs *= .95; ss *= .95;
   }
-  let y = top + Math.max(0, (bottom - top - total)/2) + hs*.85;
-  ctx.fillStyle = t.ink; ctx.textBaseline = 'alphabetic';
-  ctx.font = fontFor("head", hs); hl.forEach(l => { ctx.fillText(l, P, y); y += hs*1.08; });
-  y += 10;
-  ctx.fillStyle = t.acc[0]; ctx.fillRect(P, y - hs*.35, 110, 10);
-  y += 40;
-  ctx.fillStyle = t.ink; ctx.font = fontFor("body", bs);
-  bl.forEach(l => { ctx.fillText(l, P, y); y += bs*1.4; });
+  let y = top + hs*.82;
+  ctx.fillStyle = t.ink;
+  ctx.font = f.head(hs); hl.forEach(l => { ctx.fillText(l, P, y); y += hs*.98; });
+  y += 30;
+  ctx.font = f.body(bs); bl.forEach(l => { ctx.fillText(l, P, y); y += bs*1.32; });
   y += 18;
-  ctx.font = `italic ${ss}px Georgia, serif`; ctx.fillStyle = t.ink; ctx.globalAlpha = .85;
-  sl.forEach(l => { ctx.fillText(l, P, y); y += ss*1.35; });
-  ctx.globalAlpha = 1;
+  ctx.font = f.sign(ss); sl.forEach(l => { ctx.fillText(l, P, y); y += ss*1.25; });
 
   // footer
-  ctx.font = "500 20px Oswald, 'Arial Narrow', sans-serif"; ctx.fillStyle = t.ink; ctx.globalAlpha = .6;
-  ctx.fillText("LATE BREAKTHROUGH BIRTHDAY CARDS · NOBODY’S BUSINESS", 62, H - 58);
-  ctx.globalAlpha = 1;
+  if (d !== "shapes"){
+    ctx.font = "600 22px Inter, system-ui, sans-serif"; ctx.fillStyle = t.ink; ctx.textAlign = "right";
+    ctx.fillText("Nobody’s Business", W - P, 120);
+    ctx.globalAlpha = .55; ctx.fillText("a podcast", W - P, 150); ctx.globalAlpha = 1;
+    ctx.textAlign = "left";
+  } else {
+    ctx.font = "600 22px Inter, system-ui, sans-serif"; ctx.fillStyle = t.ink; ctx.globalAlpha = .55;
+    ctx.fillText("Nobody’s Business — a podcast", P, 180); ctx.globalAlpha = 1;
+  }
 }
 
 // ---------- wiring
@@ -493,9 +483,12 @@ $('copy').onclick = async () => {
 };
 
 writeText(); draw();
-if (document.fonts) {
-  Promise.all([document.fonts.load('400 40px Shrikhand'), document.fonts.load('600 40px Oswald'), document.fonts.load('500 20px Oswald')])
-    .then(draw).catch(()=>{});
+if (document.fonts){
+  Promise.all([
+    document.fonts.load("800 60px 'Bricolage Grotesque'"), document.fonts.load("400 40px 'Bricolage Grotesque'"),
+    document.fonts.load("400 40px 'Instrument Serif'"), document.fonts.load("italic 400 40px 'Instrument Serif'"),
+    document.fonts.load("600 20px Inter")
+  ]).then(draw).catch(()=>{});
   document.fonts.ready.then(draw);
 }
 </script>
